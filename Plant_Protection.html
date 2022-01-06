@@ -1,0 +1,682 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+
+
+:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>植物保护通论</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><p>&nbsp;</p><h1 id='植物保护通论复习--v12'><span>植物保护通论复习  </span><em><span>v1.2</span></em></h1><p><span>Cai_设施191</span></p><p><em><span>V1.0_20211226</span></em><span>__整理完毕</span></p><p><em><span>V1.1_20220102</span></em><span>__修正若干bug，添加附件链接</span></p><p><em><span>V1.2_20220102</span></em><span>__修改若干错别字</span></p><p>&nbsp;</p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#植物保护通论复习--v12">植物保护通论复习  <em>v1.2</em></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n13"><a class="md-toc-inner" href="#第一章绪论"><strong>第一章：绪论</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n14"><a class="md-toc-inner" href="#了解即可">了解即可</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n16"><a class="md-toc-inner" href="#第二章植物病害"><strong>第二章：植物病害</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n17"><a class="md-toc-inner" href="#1-植物病害三角p8）">1. 植物病害三角（P8）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n20"><a class="md-toc-inner" href="#2-病状与病症p9）">2. 病状与病症（P9）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n28"><a class="md-toc-inner" href="#3-植物病害的类型p10）">3. 植物病害的类型（P10）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n35"><a class="md-toc-inner" href="#4-植物病原物p11）">4. 植物病原物（P11）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n186"><a class="md-toc-inner" href="#5-病原物的侵染过程p35）">5. 病原物的侵染过程（P35）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n193"><a class="md-toc-inner" href="#6-病害循环p37）">6. 病害循环（P37）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n240"><a class="md-toc-inner" href="#7-植物病害的诊断p40）">7. 植物病害的诊断（P40）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n297"><a class="md-toc-inner" href="#第三章植物虫害"><strong>第三章：植物虫害</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n298"><a class="md-toc-inner" href="#1-昆虫的形态结构p44）">1. 昆虫的形态结构（P44）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n404"><a class="md-toc-inner" href="#2-昆虫的生殖方式p58）">2. 昆虫的生殖方式（P58）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n435"><a class="md-toc-inner" href="#3-昆虫的变态发育p59）">3. 昆虫的变态发育（P59）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n467"><a class="md-toc-inner" href="#4-昆虫的生物学习性p62）">4. 昆虫的生物学习性（P62）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n514"><a class="md-toc-inner" href="#5-植食昆虫及其危害p65）">5. 植食昆虫及其危害（P65）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n621"><a class="md-toc-inner" href="#第四章农田草害"><strong>第四章：农田草害</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n622"><a class="md-toc-inner" href="#1-杂草的概念与生物学特性p99）">1. 杂草的概念与生物学特性（P99）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n656"><a class="md-toc-inner" href="#2-杂草生态学p101）">2. 杂草生态学（P101）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n730"><a class="md-toc-inner" href="#3-杂草的分类p109）">3. 杂草的分类（P109）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n780"><a class="md-toc-inner" href="#第六章农业有害生物的发生规律及预测"><strong>第六章：农业有害生物的发生规律及预测</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n781"><a class="md-toc-inner" href="#1-植物病害的流行p156）">1. 植物病害的流行（P156）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n820"><a class="md-toc-inner" href="#2-植物病虫害预测p173）">2. 植物病虫害预测（P173）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n850"><a class="md-toc-inner" href="#第七章农业有害生物的防治技术与策略"><strong>第七章：农业有害生物的防治技术与策略</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n851"><a class="md-toc-inner" href="#1-有害生物防治技术p185）">1. 有害生物防治技术（P185）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1009"><a class="md-toc-inner" href="#2-有害生物防治措施p213）">2. 有害生物防治措施（P213）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1018"><a class="md-toc-inner" href="#第九章植物保护技术推广"><strong>第九章：植物保护技术推广</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1019"><a class="md-toc-inner" href="#1-植物保护技术推广形式p285）">1. 植物保护技术推广形式（P285）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1028"><a class="md-toc-inner" href="#2-植物保护技术推广体系p286）">2. 植物保护技术推广体系（P286）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1041"><a class="md-toc-inner" href="#题型"><strong>题型</strong></a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1061"><a class="md-toc-inner" href="#附件"><strong>附件</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1062"><a class="md-toc-inner" href="#植物保护通论md">植物保护通论.md</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1067"><a class="md-toc-inner" href="#植物保护通论重点---于娜---录音m4a">植物保护通论重点—于娜—录音.m4a</a></span></p></div><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第一章绪论'><strong><span>第一章：绪论</span></strong></h2><h3 id='了解即可'><span>了解即可</span></h3><p>&nbsp;</p><h2 id='第二章植物病害'><strong><span>第二章：植物病害</span></strong></h2><h3 id='1-植物病害三角p8）'><span>1. 植物病害三角（P8）</span></h3><p><u><span>环境、植物、病原物</span></u><span>共同构成病害三角。加上</span><u><span>“人类干扰”</span></u><span>可以构成病害四角</span></p><p>&nbsp;</p><h3 id='2-病状与病症p9）'><span>2. 病状与病症（P9）</span></h3><p><span>两者的区别为，一个从植物的角度来说，一个从病原物的角度来说。  </span></p><blockquote><p><strong><span>病状</span></strong><span>：</span><u><span>植物自身外部表现出的异常状态</span></u><span>，常见类型为：</span><u><span>变色、坏死、腐烂、萎焉、畸形</span></u></p><p><strong><span>病症</span></strong><span>：</span><u><span>病原物在植物病部表面形成的各种结构</span></u><span>，常见类型为：</span><u><span>霉状物、粉状物、绣状物、粒状物、索状物、脓状物</span></u></p><blockquote><p><span>通常真菌、细菌病害既有病状也有病症，但病毒和菌原体等病害只能看到病状看不到病症             </span></p></blockquote></blockquote><p><span>                                                                                                   </span></p><h3 id='3-植物病害的类型p10）'><span>3. 植物病害的类型（P10）</span></h3><p><span>根据致病因素的性质，通常可以分为侵染性病害和非侵染性病害。</span></p><blockquote><p><strong><span>病原物</span></strong><span>：</span><u><span>引起植物病害的生物因素</span></u><span>。主要有：</span><u><span>真菌、细菌、病毒、线虫和寄生性种子植物</span></u><span>等</span></p><p><strong><span>侵染性病害</span></strong><span>：由</span><u><span>生物因素引起</span></u><span>的植物病害（传染性病害）</span></p><p><strong><span>非侵染性病害</span></strong><span>：由</span><u><span>非生物因素引起</span></u><span>的植物病害（即不适宜的环境条件）（非传染性病害或生理性病害）</span></p></blockquote><p>&nbsp;</p><h3 id='4-植物病原物p11）'><span>4. 植物病原物（P11）</span></h3><ul><li><p><strong><span>真菌（P12）</span></strong></p><ol start='' ><li><p><span>植物病原真菌的一般性状</span></p><ul><li><p><span>真菌可分为</span><u><span>营养体</span></u><span>和</span><u><span>繁殖体</span></u></p></li><li><p><span>繁殖体分为</span><u><span>无性孢子</span></u><span>与</span><u><span>有性孢子</span></u></p><blockquote><p><strong><span>无性孢子类型</span></strong><span>：</span><u><span>游动孢子、孢囊孢子、分生孢子</span></u></p><p><strong><span>有性孢子类型</span></strong><span>：</span><u><span>休眠孢子囊、卵孢子、接合孢子、子囊孢子、担孢子</span></u></p></blockquote></li></ul></li><li><p><span>植物病原真菌的主要类群</span></p><ul><li><p><span>包括</span><u><span>原生动物界、真菌界、色菌界</span></u><span>，其中又以后两者为最重要</span></p><ol start='' ><li><p><strong><span>原生动物界</span></strong><span>：</span></p><p><span>包括</span><u><span>根肿菌门</span></u><span>，无性繁殖产生</span><u><span>游动孢子囊</span></u><span>，有性生殖产生</span><u><span>休眠孢子囊</span></u></p><p><span>通常引起植物根部或茎部膨大和组织增生</span></p></li><li><p><strong><span>色菌界</span></strong><span>：</span></p><p><span>包括</span><u><span>卵菌门</span></u><span>，无性繁殖形成</span><u><span>游动孢子囊</span></u><span>，有性生殖形成</span><u><span>卵孢子</span></u></p><ol start='' ><li><span>腐霉菌（—瓜果腐霉）</span></li><li><span>疫霉菌（马铃薯晚疫病—致病疫霉）</span></li><li><span>霜霉菌（十字花科霜霉病—寄生霜霉）</span></li></ol></li><li><p><strong><span>真菌界</span></strong><span>：</span></p><p><span>真菌界分为四门一类：</span><u><span>壶菌门、接合菌门、子囊菌门、担子菌门、无性菌类</span></u></p><figure><table><thead><tr><th><span>类群</span></th><th><span>营养体</span></th><th><span>无性孢子</span></th><th><span>有性孢子</span></th></tr></thead><tbody><tr><td><strong><span>壶菌门</span></strong></td><td><span>单细胞或无隔菌丝</span></td><td><span>游动孢子</span></td><td><span>休眠孢子</span></td></tr><tr><td><strong><span>接合菌门</span></strong></td><td><span>无隔菌丝</span></td><td><span>孢囊孢子</span></td><td><span>接合孢子</span></td></tr><tr><td><strong><span>子囊菌门</span></strong></td><td><span>有隔菌丝</span></td><td><span>分生孢子</span></td><td><span>子囊孢子</span></td></tr><tr><td><strong><span>担子菌门</span></strong></td><td><span>有隔菌丝</span></td><td><span>多数缺</span></td><td><span>担孢子</span></td></tr><tr><td><strong><span>无性菌类</span></strong></td><td><span>有隔菌丝</span></td><td><span>分生孢子</span></td><td><span>多数缺</span></td></tr></tbody></table></figure><ul><li><p><span>壶菌门（玉米褐斑病—玉蜀黍节壶菌）</span></p></li><li><p><span>接合菌门（甘薯软腐病—匍枝根霉）</span></p></li><li><p><span>子囊菌门常见包括：</span><strong><span>（重点）</span></strong></p><ol start='' ><li><span>外囊菌（桃缩叶病—畸形外囊菌）</span></li><li><span>白粉菌（麦类白粉病—禾布氏白粉菌）</span></li><li><span>子囊壳菌（麦类赤霉病—玉蜀黍赤霉）</span></li><li><span>子囊腔菌（梨黑星病—纳雪黑星菌）</span></li><li><span>子囊盘菌（油菜菌核病—核盘菌）</span></li></ol></li><li><p><span>担子菌门常见包括：</span></p><ol start='' ><li><span>黑粉菌（小麦散黑穗病—小麦黑粉菌）</span></li><li><span>锈菌（小麦条锈病、叶锈病、秆锈病—略）</span></li></ol></li><li><p><span>无性菌类（</span><u><span>不完全真菌、半知菌</span></u><span>）可分为四类</span></p><ol start='' ><li><span>丝孢菌（稻瘟病—灰梨孢、玉米小斑病—玉蜀黍双极蠕孢、棉花枯萎病—尖镰孢等）</span></li><li><span>黑盘孢菌（棉、麻、苹果的炭疽病—胶孢炭疽菌）</span></li><li><span>球壳孢菌（黄麻秆枯病—菜豆壳球孢）</span></li><li><span>无孢菌（水稻等作物纹枯病—立枯丝核菌、麦类纹枯病—禾谷丝核菌）</span></li></ol></li></ul></li></ol></li></ul></li></ol></li><li><p><strong><span>原核生物（P22）</span></strong></p><ul><li><p><span>原核生物主要包括</span><u><span>细菌</span></u><span>和</span><u><span>菌原体</span></u><span>，并主要关注细菌</span></p></li><li><p><span>一般可以分为：</span><u><span>革兰氏阴性细菌</span></u><span>、</span><u><span>革兰氏阳性细菌</span></u><span>、</span><u><span>菌原体</span></u></p><ol start='' ><li><p><span>革兰氏阴性细菌</span></p><ul><li><span>黄单孢菌属（水稻白叶枯病—水稻黄单孢菌水稻致病变种）</span></li><li><span>果胶杆菌属（十字花科蔬菜软腐病—食胡萝卜果胶杆菌食胡萝卜亚种）</span></li></ul></li><li><p><span>革兰氏阳性细菌</span></p></li><li><p><span>菌原体</span></p></li></ol></li></ul></li><li><p><strong><span>病毒（P26）</span></strong></p><ul><li><p><span>病毒引起的病状以花叶为主</span></p></li><li><p><span>病毒的传播一般分为</span><u><span>非介体传播</span></u><span>和</span><u><span>介体传播</span></u></p><p><span>特别要注意介体传播中的</span><u><span>口针状型病毒</span></u><span>，可以通过</span><u><span>汁液接触传播</span></u><span>，主要传毒昆虫为</span><u><span>蚜虫</span></u><span>，引起症状多为花叶</span></p><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="252.79998779296875" style="max-width: 978px;" viewBox="0 0.0000019073486328125 978 252.79998779296875"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .label{font-family:sans-serif;color:#333;}#mermaidChart0 .label text{fill:#333;}#mermaidChart0 .node rect,#mermaidChart0 .node circle,#mermaidChart0 .node ellipse,#mermaidChart0 .node polygon,#mermaidChart0 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart0 .node .label{text-align:center;}#mermaidChart0 .node.clickable{cursor:pointer;}#mermaidChart0 .arrowheadPath{fill:#333333;}#mermaidChart0 .edgePath .path{stroke:#333333;stroke-width:1.5px;}#mermaidChart0 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart0 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart0 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart0 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart0 .cluster text{fill:#333;}#mermaidChart0 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80,100%,96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart0:root{--mermaid-font-family:sans-serif;}#mermaidChart0:root{--mermaid-alt-font-family:sans-serif;}#mermaidChart0 flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B1" id="L-A-B1" style="opacity: 1;"><path class="path" d="M391,51.363017776777156L240,78.5999984741211L240,103.5999984741211" marker-end="url(#arrowhead18)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead18" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-A LE-B2" id="L-A-B2" style="opacity: 1;"><path class="path" d="M619,51.363017776777156L770,78.5999984741211L770,103.5999984741211" marker-end="url(#arrowhead19)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead19" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B1 LE-C1" id="L-B1-C1" style="opacity: 1;"><path class="path" d="M190,138.97894487882917L50,174.1999969482422L50,199.1999969482422" marker-end="url(#arrowhead20)" style="fill:none"></path><defs><marker id="arrowhead20" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B1 LE-C2" id="L-B1-C2" style="opacity: 1;"><path class="path" d="M240,149.1999969482422L240,174.1999969482422L240,199.1999969482422" marker-end="url(#arrowhead21)" style="fill:none"></path><defs><marker id="arrowhead21" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B1 LE-C3" id="L-B1-C3" style="opacity: 1;"><path class="path" d="M290,137.56822183199017L454,174.1999969482422L454,199.1999969482422" marker-end="url(#arrowhead22)" style="fill:none"></path><defs><marker id="arrowhead22" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-D1" id="L-B2-D1" style="opacity: 1;"><path class="path" d="M728,139.7839974975586L620,174.1999969482422L620,199.1999969482422" marker-end="url(#arrowhead23)" style="fill:none"></path><defs><marker id="arrowhead23" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-D2" id="L-B2-D2" style="opacity: 1;"><path class="path" d="M770,149.1999969482422L770,174.1999969482422L770,199.1999969482422" marker-end="url(#arrowhead24)" style="fill:none"></path><defs><marker id="arrowhead24" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-D3" id="L-B2-D3" style="opacity: 1;"><path class="path" d="M812,139.7839974975586L920,174.1999969482422L920,199.1999969482422" marker-end="url(#arrowhead25)" style="fill:none"></path><defs><marker id="arrowhead25" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-16" transform="translate(505,30.799999237060547)" style="opacity: 1;"><rect rx="5" ry="5" x="-114" y="-22.800000190734863" width="228" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-104,-12.800000190734863)"><foreignObject width="208" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">病毒传播方式（此图非重点）</div></foreignObject></g></g></g><g class="node default" id="flowchart-B1-17" transform="translate(240,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-50" y="-22.800000190734863" width="100" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40,-12.800000190734863)"><foreignObject width="80" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">非介体传播</div></foreignObject></g></g></g><g class="node default" id="flowchart-B2-19" transform="translate(770,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">介体传播</div></foreignObject></g></g></g><g class="node default" id="flowchart-C1-21" transform="translate(50,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">机械传播</div></foreignObject></g></g></g><g class="node default" id="flowchart-C2-23" transform="translate(240,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-98" y="-22.800000190734863" width="196" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-88,-12.800000190734863)"><foreignObject width="176" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">无性繁殖材料和嫁接传播</div></foreignObject></g></g></g><g class="node default" id="flowchart-C3-25" transform="translate(454,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-66" y="-22.800000190734863" width="132" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-56,-12.800000190734863)"><foreignObject width="112" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">种子和花粉传播</div></foreignObject></g></g></g><g class="node default" id="flowchart-D1-27" transform="translate(620,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-50" y="-22.800000190734863" width="100" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40,-12.800000190734863)"><foreignObject width="80" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">口针型病毒</div></foreignObject></g></g></g><g class="node default" id="flowchart-D2-29" transform="translate(770,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-50" y="-22.800000190734863" width="100" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40,-12.800000190734863)"><foreignObject width="80" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">循回型病毒</div></foreignObject></g></g></g><g class="node default" id="flowchart-D3-31" transform="translate(920,221.99999618530273)" style="opacity: 1;"><rect rx="5" ry="5" x="-50" y="-22.800000190734863" width="100" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40,-12.800000190734863)"><foreignObject width="80" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">增值型病毒</div></foreignObject></g></g></g></g></g></g></svg></div></li><li><p><span>植物病毒的主要类群</span></p><ol start='' ><li><span>烟草花叶病毒属（烟草花叶病毒—烟草、番茄等植物的花叶病）</span></li><li><span>黄瓜花叶病毒属（黄瓜花叶病毒—）</span></li></ol></li></ul></li><li><p><strong><span>线虫（P31）</span></strong><span>（不作要求）</span></p><ul><li><span>又称蠕虫，不属于昆虫，一般归为病害而不是虫害</span></li></ul></li><li><p><strong><span>寄生性种子植物（P33）</span></strong><span>（不作要求）</span></p><ul><li><span>最常提到的有菟丝子</span></li></ul><p>&nbsp;</p></li></ul><h3 id='5-病原物的侵染过程p35）'><span>5. 病原物的侵染过程（P35）</span></h3><ul><li><span>侵染时期分为：</span><u><span>侵入前期、侵入期、潜育期、发病期</span></u></li><li><span>侵入途径有：直接侵入、自然孔口侵入和伤口侵入</span></li></ul><p>&nbsp;</p><h3 id='6-病害循环p37）'><span>6. 病害循环（P37）</span></h3><ul><li><p><span>病害循环：</span><u><span>指病害从寄主植物的前一个生长季节开始发病到下一个生长季节再度发病的过程</span></u></p></li><li><p><span>病害循环主要涉及病原物的</span><u><span>越冬或越夏</span></u><span>、</span><u><span>传播</span></u><span>和</span><u><span>初侵染与再侵染</span></u><span>三个方面</span></p><ol start='' ><li><p><span>越冬或越夏：</span></p><ul><li><p><span>越冬或越夏场所一般也是下一生长季节的初侵染来源地</span></p><p><span>包括：有病种苗、田间病株、病残体、病土壤、昆虫介体</span></p></li></ul></li><li><p><span>传播：包括</span><u><span>气流传播、水流传播、昆虫等其他生物传播、人为因素传播</span></u><span>四种</span></p><ul><li><span>病原真菌以气流传播为主，其次为水流传播</span></li><li><span>病原细菌以水流传播为主</span></li><li><span>植物病毒和菌原体以昆虫等介体传播为主（蚜虫、叶蝉、飞虱）</span></li><li><span>人类活动对所有病原物的传播特别是远距离传播都是重要的</span></li></ul></li><li><p><span>初侵染与再侵染：</span></p><ul><li><p><strong><span>单循环病害</span></strong><span>：指只有初侵染、没有再侵染的病害</span></p><ul><li><span>特点：在植物的一个生长季只有一个侵染过程，潜育期较长</span></li><li><span>例如：小麦散黑穗病、玉米丝黑穗病</span></li><li><span>防治：只要消除初侵染来源，就可以达到完全防治病害的目的</span></li></ul></li><li><p><strong><span>多循环病害</span></strong><span>：指一个植物生长季中具有初侵染和再侵染的病害。</span></p><ul><li><p><span>特点：在植物的一个生长季有多个侵染过程，潜育期一般较短</span></p><p><span>这类病害初侵染数量有限，但通过不断再侵染使其迅速蔓延而引起流行</span></p></li><li><p><span>例如：稻瘟病、水稻白叶枯病、小麦条锈病、小麦白粉病、玉米小斑病</span></p></li><li><p><span>防治：一般通过种植抗病品种、改善栽培措施和多次药剂防止来降低病害发展速度，控制病害危害</span></p></li></ul><p>&nbsp;</p></li></ul></li></ol></li></ul><h3 id='7-植物病害的诊断p40）'><span>7. 植物病害的诊断（P40）</span></h3><ul><li><p><span>科赫法则（了解）</span></p><ol start='' ><li><span>植物病部常伴有病原生物存在</span></li><li><span>将该生物在培养基上分离和纯培养</span></li><li><span>将纯培养生物接种相同植物的健株，接种植株表现与原来相同的症状</span></li><li><span>从接种发病的植株上再次进行该生物的分离和纯培养，其特征与原接种的病原生物相同</span></li></ol></li><li><p><span>侵染性病害的特点与诊断</span></p><ul><li><p><span>真菌病害</span></p><ul><li><span>症状：</span><u><span>坏死、腐烂和萎焉，少数为畸形</span></u></li><li><span>特点：</span><u><span>在病斑上常常有霉状物、粉状物、粒状物等病征</span></u></li></ul></li><li><p><span>细菌病害</span></p><ul><li><p><span>症状：</span><u><span>坏死、腐烂、萎焉和肿瘤等，并时常有菌脓溢出</span></u></p></li><li><p><span>特点：</span></p><ol start='' ><li><u><span>病部常为水渍状或油渍状</span></u></li><li><u><span>在潮湿条件下，病部有黄褐色或乳白色、胶黏、似水珠状的菌脓</span></u></li><li><u><span>腐烂型病害病部往往有恶臭味</span></u></li></ol></li><li><p><span>特别：徒手切片可以观察到</span><u><strong><span>溢菌现象</span></strong></u></p></li></ul></li><li><p><span>病原体病害（不作要求）</span></p><ul><li><span>症状：黄化、矮化、丛枝、花变叶及果实畸形等</span></li></ul></li><li><p><span>病毒病害（不作要求）</span></p><ul><li><span>症状：</span><strong><u><span>花叶</span></u></strong><span>、黄化、矮缩、皱缩、丛枝等，少数为坏死斑点</span></li></ul></li><li><p><span>线虫病害（不作要求）</span></p><ul><li><span>病状：植株矮小、叶片黄化、局部畸形和根部腐烂等</span></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></li></ul><h2 id='第三章植物虫害'><strong><span>第三章：植物虫害</span></strong></h2><h3 id='1-昆虫的形态结构p44）'><span>1. 昆虫的形态结构（P44）</span></h3><ul><li><p><strong><span>特征</span></strong><span>：体躯分为头、胸、腹三段，有6足4翅，节肢动物</span></p></li><li><p><strong><span>形态结构与功能</span></strong></p><ul><li><p><strong><span>【头部】</span></strong></p><ul><li><p><strong><span>头式</span></strong></p><ol start='' ><li><u><span>下口式</span></u><span>：适合咀嚼植物性食料，常见蝗虫、螽斯和鳞翅目的幼虫等</span></li><li><u><span>前口式</span></u><span>：适合捕食动物或其他昆虫，常见虎甲、步行虫、草蛉等</span></li><li><u><span>后口式</span></u><span>：适合刺吸植物或动物汁液，常见椿象、蚜虫、蝉、叶蝉等</span></li></ol></li><li><p><strong><span>触角</span></strong></p><ul><li><span>嗅觉、触觉器官，基本构造为</span><u><span>柄节、梗节和鞭节</span></u></li><li><span>刚毛状、丝状、串珠状、锯齿状、球杆状、锤状、具芒状、羽毛状、鳃叶状、环毛状</span></li></ul></li><li><p><strong><span>眼</span></strong></p><ol start='' ><li><p><span>复眼：昆虫成虫期和不完全变态昆虫的若虫期都有1对复眼</span></p><p><span>因复眼故很多害虫都有趋绿性，其中蚜虫趋黄</span></p></li><li><p><span>单眼</span></p></li></ol></li><li><p><strong><span>口器</span></strong></p><ol start='' ><li><span>咀嚼式口器：蝗虫、鳞翅目幼虫等</span></li><li><span>刺吸式口器：蚜虫、叶蝉等</span></li><li><span>锉吸式口器：蓟马类昆虫特有</span></li><li><span>虹吸式口器：鳞翅目成虫特有</span></li><li><span>舔吸式口器：双翅目蝇类特有</span></li><li><span>幼虫的口器：鳞翅目幼虫变异的咀嚼式、蝇类幼虫刮吸式、脉翅目幼虫捕吸式等</span></li></ol></li></ul></li><li><p><strong><span>【胸部】</span></strong></p><ul><li><p><strong><span>胸节</span></strong><span>基本构造：前胸、中胸、后胸，其中后两者具翅</span></p></li><li><p><strong><span>足</span></strong><span>：步行足（步甲）、跳跃足（蝗虫）、捕捉足（螳螂）、开掘足（蝼蛄）、游泳足（仰泳椿）、抱握足（龙虱）、携粉足（蜜蜂）、幼虫的前足（鳞翅目）</span></p></li><li><p><strong><span>翅</span></strong></p><ul><li><span>由背板向两侧扩展而来，成虫期昆虫一般有两对翅，生在中胸的为前翅，后胸的为后翅。少数种类只有一对翅或完全无翅。不完全变态昆虫若虫期翅在体外发育，完全变态昆虫幼虫期翅在体内发育</span></li><li><span>膜翅（蚜虫、蜂类、蝇类）、鳞翅（蝶类、蛾类）、毛翅（石蛾）、缨翅（蓟马）、复翅（蝗虫、蝼蛄、蟋蟀的前翅）、鞘翅（金龟甲、叶甲、天牛等的前翅）、半鞘翅（椿象的前翅）、平衡棒（蚊、蝇的后翅）</span></li></ul></li></ul></li><li><p><strong><span>【腹部】</span></strong></p><ul><li><span>末端有尾须及外生殖器，两侧有气门，内脏大部分位于腹腔内。腹部是昆虫新陈代谢与生殖的中心</span></li><li><span>不同昆虫有不同数目的体节，每个腹节只有背板和腹板而没有侧板。</span></li></ul></li><li><p><strong><span>【体壁】</span></strong><span>（不作要求）</span></p></li></ul></li><li><p><strong><span>昆虫内部器官与功能</span></strong></p><ol start='' ><li><p><span>消化系统</span></p><ul><li><span>常见的如</span><u><span>BT毒素</span></u><span>即作用于消化系统</span></li></ul></li><li><p><span>排泄系统</span></p></li><li><p><span>呼吸系统</span></p><ul><li><span>常见的</span><u><span>熏蒸</span></u><span>的杀虫剂使用方式即利用的是呼吸系统</span></li></ul></li><li><p><span>循环系统</span></p></li><li><p><span>神经系统</span></p><ul><li><span>是当前绝大部分杀虫剂的作用方式，如</span><u><span>有机磷杀虫剂</span></u></li></ul></li><li><p><span>生殖系统</span></p></li><li><p><span>激素调控系统</span></p><ul><li><span>内激素：</span><u><span>脑激素</span></u><span>、</span><u><span>蜕皮激素</span></u><span>、</span><u><span>保幼激素</span></u><span>（分别为脑神经细胞、前胸腺、咽侧体分泌）</span></li><li><span>外激素：即信息激素，常见有</span><u><span>性外激素</span></u><span>（昆虫引诱剂）、示踪外激素、警戒外激素和群集外激素等</span></li></ul></li></ol></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="712.7999877929688" style="max-width: 1292.60009765625px;" viewBox="0 0.0000019073486328125 1292.60009765625 712.7999877929688"><style>#mermaidChart1{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart1 .error-icon{fill:#552222;}#mermaidChart1 .error-text{fill:#552222;stroke:#552222;}#mermaidChart1 .edge-thickness-normal{stroke-width:2px;}#mermaidChart1 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart1 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart1 .marker{fill:#333333;}#mermaidChart1 .marker.cross{stroke:#333333;}#mermaidChart1 svg{font-family:sans-serif;font-size:16px;}#mermaidChart1 .label{font-family:sans-serif;color:#333;}#mermaidChart1 .label text{fill:#333;}#mermaidChart1 .node rect,#mermaidChart1 .node circle,#mermaidChart1 .node ellipse,#mermaidChart1 .node polygon,#mermaidChart1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart1 .node .label{text-align:center;}#mermaidChart1 .node.clickable{cursor:pointer;}#mermaidChart1 .arrowheadPath{fill:#333333;}#mermaidChart1 .edgePath .path{stroke:#333333;stroke-width:1.5px;}#mermaidChart1 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart1 .cluster text{fill:#333;}#mermaidChart1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80,100%,96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart1:root{--mermaid-font-family:sans-serif;}#mermaidChart1:root{--mermaid-alt-font-family:sans-serif;}#mermaidChart1 flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B1" id="L-A-B1" style="opacity: 1;"><path class="path" d="M55.98589319873112,263.20000076293945L117,30.799999237060547L182,30.799999237060547" marker-end="url(#arrowhead56)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead56" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-B2" id="L-A-B2" style="opacity: 1;"><path class="path" d="M92,286L117,286L142,286" marker-end="url(#arrowhead57)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead57" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-B3" id="L-A-B3" style="opacity: 1;"><path class="path" d="M54.785714114134855,308.79999923706055L117,605.2000007629395L142,605.2000007629395" marker-end="url(#arrowhead58)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead58" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B1 LE-C11" id="L-B1-C11" style="opacity: 1;"><path class="path" d="M234,30.799999237060547L299,30.799999237060547L324,30.799999237060547" marker-end="url(#arrowhead59)" style="fill:none"></path><defs><marker id="arrowhead59" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C21" id="L-B2-C21" style="opacity: 1;"><path class="path" d="M220.9999993785581,263.20000076293945L299,126.39999771118164L477.3874969482422,126.39999771118164" marker-end="url(#arrowhead60)" style="fill:none"></path><defs><marker id="arrowhead60" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-C21 LE-D21" id="L-C21-D21" style="opacity: 1;"><path class="path" d="M529.3874969482422,126.39999771118164L707.7749938964844,126.39999771118164L772.7749977111816,126.39999771118164" marker-end="url(#arrowhead61)" style="fill:none"></path><defs><marker id="arrowhead61" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-D21 LE-E21" id="L-D21-E21" style="opacity: 1;"><path class="path" d="M842.7499961853027,126.39999771118164L907.75,126.39999771118164L932.75,126.39999771118164" marker-end="url(#arrowhead62)" style="fill:none"></path><defs><marker id="arrowhead62" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C22" id="L-B2-C22" style="opacity: 1;"><path class="path" d="M274,286L299,286L477.3874969482422,286" marker-end="url(#arrowhead63)" style="fill:none"></path><defs><marker id="arrowhead63" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-C22 LE-D22" id="L-C22-D22" style="opacity: 1;"><path class="path" d="M529.3874969482422,286L707.7749938964844,286L772.7749977111816,286" marker-end="url(#arrowhead64)" style="fill:none"></path><defs><marker id="arrowhead64" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-D22 LE-E22" id="L-D22-E22" style="opacity: 1;"><path class="path" d="M842.7499961853027,286L907.75,286L932.75,286" marker-end="url(#arrowhead65)" style="fill:none"></path><defs><marker id="arrowhead65" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C23" id="L-B2-C23" style="opacity: 1;"><path class="path" d="M222.1335142196216,308.79999923706055L299,432.8000030517578L477.3874969482422,432.8000030517578" marker-end="url(#arrowhead66)" style="fill:none"></path><defs><marker id="arrowhead66" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-C23 LE-D23" id="L-C23-D23" style="opacity: 1;"><path class="path" d="M529.3874969482422,432.8000030517578L707.7749938964844,432.8000030517578L732.7749938964844,432.8000030517578" marker-end="url(#arrowhead67)" style="fill:none"></path><defs><marker id="arrowhead67" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B3 LE-C31" id="L-B3-C31" style="opacity: 1;"><path class="path" d="M274,605.2000007629395L299,605.2000007629395L436.3999938964844,605.2000007629395" marker-end="url(#arrowhead68)" style="fill:none"></path><defs><marker id="arrowhead68" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-58" transform="translate(50,286)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">形态结构</div></foreignObject></g></g></g><g class="node default" id="flowchart-B1-59" transform="translate(208,30.799999237060547)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">特征</div></foreignObject></g></g></g><g class="node default" id="flowchart-B2-61" transform="translate(208,286)" style="opacity: 1;"><rect rx="5" ry="5" x="-66" y="-22.800000190734863" width="132" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-56,-12.800000190734863)"><foreignObject width="112" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">形态结构与功能</div></foreignObject></g></g></g><g class="node default" id="flowchart-B3-63" transform="translate(208,605.2000007629395)" style="opacity: 1;"><rect rx="5" ry="5" x="-66" y="-22.800000190734863" width="132" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-56,-12.800000190734863)"><foreignObject width="112" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">内部器官与功能</div></foreignObject></g></g></g><g class="node default" id="flowchart-C11-65" transform="translate(503.3874969482422,30.799999237060547)" style="opacity: 1;"><rect rx="5" ry="5" x="-179.3874969482422" y="-22.800000190734863" width="358.7749938964844" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-169.3874969482422,-12.800000190734863)"><foreignObject width="338.7749938964844" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">体躯分为头、胸、腹三段，有6足4翅，节肢动物</div></foreignObject></g></g></g><g class="node default" id="flowchart-C21-67" transform="translate(503.3874969482422,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">头部</div></foreignObject></g></g></g><g class="node default" id="flowchart-D21-69" transform="translate(807.7624969482422,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-34.98750114440918" y="-61.20000076293945" width="69.97500228881836" height="122.4000015258789" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24.98750114440918,-51.20000076293945)"><foreignObject width="49.97500228881836" height="102.4000015258789"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">1. 头式<br>2. 触角<br>3. 眼<br>4. 口器</div></foreignObject></g></g></g><g class="node default" id="flowchart-E21-71" transform="translate(1108.6750030517578,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-175.9250030517578" y="-61.20000076293945" width="351.8500061035156" height="122.4000015258789" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-165.9250030517578,-51.20000076293945)"><foreignObject width="331.8500061035156" height="102.4000015258789"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">下口式、中口式、后口式<br>刚毛状、丝状、串珠状、锯齿状··· ···<br>复眼、单眼<br>咀嚼式、刺吸式、锉吸式、虹吸式、舔吸式··· ···</div></foreignObject></g></g></g><g class="node default" id="flowchart-C22-73" transform="translate(503.3874969482422,286)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">胸部</div></foreignObject></g></g></g><g class="node default" id="flowchart-D22-75" transform="translate(807.7624969482422,286)" style="opacity: 1;"><rect rx="5" ry="5" x="-34.98750114440918" y="-48.400001525878906" width="69.97500228881836" height="96.80000305175781" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24.98750114440918,-38.400001525878906)"><foreignObject width="49.97500228881836" height="76.80000305175781"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">1. 胸节<br>2. 足<br>3. 翅</div></foreignObject></g></g></g><g class="node default" id="flowchart-E22-77" transform="translate(1108.6750030517578,286)" style="opacity: 1;"><rect rx="5" ry="5" x="-175.9250030517578" y="-48.400001525878906" width="351.8500061035156" height="96.80000305175781" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-165.9250030517578,-38.400001525878906)"><foreignObject width="331.8500061035156" height="76.80000305175781"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">前胸、中胸、后胸<br>步行足、跳跃足、捕捉足、开掘足、游泳足··· ···<br>膜翅、鳞翅、毛翅、缨翅、复翅、鞘翅··· ···</div></foreignObject></g></g></g><g class="node default" id="flowchart-C23-79" transform="translate(503.3874969482422,432.8000030517578)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">腹部</div></foreignObject></g></g></g><g class="node default" id="flowchart-D23-81" transform="translate(807.7624969482422,432.8000030517578)" style="opacity: 1;"><rect rx="5" ry="5" x="-74.98750305175781" y="-48.400001525878906" width="149.97500610351562" height="96.80000305175781" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-64.98750305175781,-38.400001525878906)"><foreignObject width="129.97500610351562" height="76.80000305175781"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">1. 体节<br>2. 尾须及外生殖器<br>3. 气门</div></foreignObject></g></g></g><g class="node default" id="flowchart-C31-83" transform="translate(503.3874969482422,605.2000007629395)" style="opacity: 1;"><rect rx="5" ry="5" x="-66.98749923706055" y="-99.5999984741211" width="133.9749984741211" height="199.1999969482422" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-56.98749923706055,-89.5999984741211)"><foreignObject width="113.9749984741211" height="179.1999969482422"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">1. 消化系统<br>2. 排泄系统<br>3. 呼吸系统<br>4. 循环系统<br>5. 神经系统<br>6. 生殖系统<br>7. 激素调控系统</div></foreignObject></g></g></g></g></g></g></svg></div><h3 id='2-昆虫的生殖方式p58）'><span>2. 昆虫的生殖方式（P58）</span></h3><ul><li><strong><span>了解各种生殖方式的概念，能够提出例子</span></strong></li></ul><ol start='' ><li><p><u><span>两性生殖</span></u></p><ul><li><span>昆虫繁殖最普遍的方式</span></li></ul></li><li><p><u><span>孤雌生殖</span></u></p><p><span>卵不经过受精而发育成新个体的生殖方式称为孤雌生殖</span></p><ul><li><span>经常性孤雌生殖：蓟马、介壳虫、粉虱等昆虫，没有雄虫或雄虫极少，完全或基本上以孤雌生殖进行繁殖</span></li><li><span>周期性孤雌生殖或异态交替：蚜虫从春季到秋季连续10代多都是孤雌生殖，不产生性蚜，而当冬季来临前才产生性蚜，交配后产生受精卵跃越冬</span></li><li><span>偶发性孤雌生殖：家蚕、飞蝗等，偶尔也出现未受精卵发育成新个体的现象</span></li></ul></li><li><p><u><span>卵胎生和幼体生殖</span></u></p><ul><li><span>卵胎生：卵在母体内成熟后，并不排出体外，而是停留在母体内进行胚胎发育，直到孵化后直接产下幼虫。常见的有蚜虫的孤雌生殖</span></li><li><span>幼体生殖：昆虫母体尚未达到成虫阶段，还处于幼虫时期就能进行生殖。常见的有瘿蚊等。凡是幼体生殖的，产下的不是乱，而是幼虫，可以看作一种胎生形式。</span></li></ul></li><li><p><u><span>多胚生殖</span></u></p><p><span>指一个卵发育成2个或更多的胚胎，每个胚胎发育成一个正常新个体的生殖方式。常见的有小蜂科、小茧蜂科、姬蜂科等（多胚生殖是对活体寄生的适应，充分利用寄主繁殖处较多的后代个体）</span></p><p>&nbsp;</p></li></ol><h3 id='3-昆虫的变态发育p59）'><span>3. 昆虫的变态发育（P59）</span></h3><ul><li><p><strong><span>变态</span></strong><span>：昆虫在胚后发育过程中，从幼期转变为成虫过程中形态发生变化的现象</span></p></li><li><p><span>昆虫的变态发育</span><strong><span>类型</span></strong></p><ol start='' ><li><p><strong><u><span>不完全变态</span></u></strong></p><ul><li><span>经过卵、幼虫和成虫三个阶段</span></li><li><strong><span>若虫</span></strong><span>：不完全变态昆虫中的一类幼虫和成虫在形态、食性等方面相似，亦称渐变态，其幼虫称为若虫（可以偏颇的理解为：不完全变态昆虫的幼虫被称为若虫（其实不完全是））</span></li><li><span>常见有：蝗虫、盲蝽、蜻蜓、螳螂等</span></li></ul></li><li><p><u><strong><span>完全变态</span></strong></u></p><ul><li><span>经过卵、幼虫、蛹和成虫四个阶段</span></li><li><span>幼虫和成虫在外部形态、内部器官、生活习性等方面有显著差异</span></li><li><span>常见有：蚊、蝇、蝶、蛾、蜂、甲虫等</span></li></ul></li><li><p><span>增节变态（非重点）</span></p></li><li><p><span>表变态（非重点）</span></p></li><li><p><span>原变态（非重点）</span></p></li></ol></li></ul><p>&nbsp;</p><h3 id='4-昆虫的生物学习性p62）'><span>4. 昆虫的生物学习性（P62）</span></h3><ul><li><p><strong><span>休眠</span></strong><span>：昆虫在其年生活史的某一个阶段，由于不适合的环境条件，常引起生长发育停止，不食不动，环境条件一点转变为适宜条件，则生长发育迅速恢复正常状态，的现象</span></p><ul><li><span>常见的有：小地老虎、黏虫、斜纹夜蛾、甜菜夜蛾、稻纵卷叶螟、东亚飞蝗等的冬眠</span></li></ul></li><li><p><strong><span>滞育</span></strong><span>：某些昆虫在一定的季节、一定的发育阶段，无论环境条件适宜与否，而出现生长发育停止，不食不动的现象</span></p><ul><li><u><span>光周期</span></u><span>是最常见的诱导因素，感受光周期信号的虫期叫</span><u><span>感受态虫期</span></u><span>，一般在滞育虫期之前</span></li><li><span>引起昆虫种群中50%个体进入滞育的光周期界限称为</span><u><span>临界光周期</span></u></li><li><span>玉米螟、棉铃虫、二化螟等以滞育虫态越冬，大地老虎、麦红吸浆虫等以滞育虫态越夏</span></li></ul></li><li><p><strong><span>假死性</span></strong><span>：一些昆虫收到某种刺激或震动时，身体蜷缩，停止不动，或从停留处跌落下来呈假死状态，稍停片刻即恢复正常的现象</span></p><ul><li><span>成虫如金龟子、猿叶虫、象鼻虫等；幼虫如小地老虎、斜纹夜蛾等具有假死性</span></li></ul></li><li><p><strong><span>趋性</span></strong><span>：指昆虫对外界刺激所产生的趋向或背向行为活动（正趋性、负趋性）</span></p><ul><li><span>常见刺激物有光、化学物质、温度、湿度等（</span><u><span>趋光性</span></u><span>、</span><u><span>趋化性</span></u><span>、趋温性、趋湿性）</span></li></ul></li><li><p><strong><span>多型现象</span></strong><span>：有些昆虫除成虫期有性二型现象外，同一性别还分化成不同形态，具有不同生活习性的现象</span></p><ul><li><span>如蚜虫在”食物充足“与”食物不充足或居住空间拥挤“的情况下分别产生无翅胎生雌蚜和有翅胎生雌蚜</span></li></ul></li><li><p><strong><span>食性</span></strong><span>：昆虫对食物的选择性称为食性</span></p><ul><li><span>通常分为</span><u><span>植食性</span></u><span>（三化螟、菜粉蝶等）、</span><u><span>肉食性</span></u><span>（螳螂、瓢虫等）、</span><u><span>腐食性</span></u><span>（果蝇、埋葬虫等）和</span><u><span>杂食性</span></u><span>（蟋蟀、蚂蚁等）</span></li></ul></li><li><p><strong><span>群集性</span></strong><span>：同种昆虫的大量个体大量聚集在一起生活的习性，称为群集性</span></p><ul><li><span>通常分为</span><u><span>临时性群集</span></u><span>（越冬时的瓢虫）和</span><u><span>永久性群集</span></u><span>（群居型飞蝗）</span></li></ul></li><li><p><strong><span>迁移性</span></strong><span>：某种昆虫成群地从一个发生地转移到另一个发生地的现象</span></p><ul><li><span>常见的有东亚飞蝗、稻纵卷叶螟、稻褐飞虱、草地螟、白背飞虱等</span></li></ul></li></ul><p>&nbsp;</p><h3 id='5-植食昆虫及其危害p65）'><span>5. 植食昆虫及其危害（P65）</span></h3><ul><li><p><span>昆虫分为2个亚纲（无翅亚纲、有翅亚纲）34个目，其中8个目与农业密切相关</span></p><ol start='' ><li><p><span>直翅目</span></p><ul><li><span>常见：蝗虫、蟋蟀、蝼蛄等</span></li><li><span>体中到大型；咀嚼式口器；前翅复翅，后翅膜翅；不完全变态</span></li></ul></li><li><p><span>半翅目</span></p><ul><li><span>统称椿象</span></li><li><span>体小到中型；刺吸式口器；前翅半鞘翅，后翅膜翅；不完全变态</span></li></ul></li><li><p><span>同翅目</span></p><ul><li><span>常见蚜虫、粉虱、介壳虫、飞虱、叶蝉等</span></li><li><span>体小；刺吸式口器；翅膜质或革质；不完全变态；存在两性生殖、孤雌生殖、有性生殖、有性与无性交替等</span></li></ul></li><li><p><span>缨翅目</span></p><ul><li><span>通称蓟马</span></li><li><span>体微小；锉吸式口器；不完全变态；一般两性生殖，很多种类无雄虫，孤雌生殖</span></li></ul></li><li><p><span>鞘翅目</span></p><ul><li><span>通称甲虫</span></li><li><span>体小至大型；咀嚼式口器；前翅鞘翅，后翅膜质；完全变态</span></li></ul></li><li><p><span>鳞翅目</span></p><ul><li><span>包括所有蝶类、蛾类</span></li><li><span>体小至大型；虹吸式口器；完全变态</span></li><li><span>螟蛾科：二化螟、三化螟、稻纵卷叶螟</span></li><li><span>夜蛾科：大螟、棉铃虫、地老虎</span></li><li><span>麦蛾科：红铃虫</span></li></ul></li><li><p><span>膜翅目</span></p><ul><li><span>蜂类、蚂蚁等</span></li><li><span>体小至中型；咀嚼式或咀吸式口器；翅膜质；完全变态；两性生殖、单性孤雌生殖或多胚生殖</span></li></ul></li><li><p><span>双翅目</span></p><ul><li><span>蚊、蝇、虻等</span></li><li><span>体小至中型；头下口式；刺吸式或舐吸式口器；仅有一对膜翅的前翅，后翅特化为平衡棒；完全变态</span></li></ul></li></ol></li><li><p><strong><span>吸收式害虫</span></strong><span>可依据口器分为：</span></p><ol start='' ><li><span>刺吸式：多为半翅目、同翅目，包括椿类、叶蝉类、飞虱类、蚜虫类、蚧类、粉虱类等</span></li><li><span>锉吸式：缨翅目蓟马</span></li><li><span>虹吸式：鳞翅目吸果夜蛾类害虫（造成落果）</span></li><li><span>刮吸式：双翅目多种植食性蚊类和蝇类</span></li></ol><ul><li><span>其中又以刺吸式害虫种类最多，危害最大</span></li><li><span>最终导致卷曲、皱缩、畸形和枯萎，导致直接危害；也会间接传播病毒病</span></li></ul></li><li><p><strong><span>咀嚼式害虫</span></strong><span>主要为咀嚼式口器，主要集中在直翅目、鞘翅目、鳞翅目和膜翅目，通常包括</span></p><ol start='' ><li><p><span>食根类害虫：也称地下害虫，直翅目蝼蛄；鞘翅目叩头甲、金龟甲；鳞翅目地老虎等</span></p></li><li><p><span>食叶类害虫</span></p><ul><li><span>暴露危害类：东亚飞蝗、黏虫、菜粉蝶、斜纹夜蛾等</span></li><li><span>潜藏危害类：稻纵卷叶螟、麦蛾、草地螟等</span></li></ul></li><li><p><span>蛀茎类害虫：亚洲玉米螟、二化螟、三化螟、大螟等</span></p></li><li><p><span>蛀果类害虫：红铃虫、棉铃虫、烟夜蛾等</span></p></li><li><p><span>贮粮害虫：玉米象、印度谷螟等</span></p></li></ol><ul><li><span>常导致出现田间缺苗端垄（地下害虫）、顶芽停止生长、叶片残缺不全（咀嚼式害虫）、茎叶枯死折断（蛀茎类害虫）、花蕾和果实受害等</span></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第四章农田草害'><strong><span>第四章：农田草害</span></strong></h2><h3 id='1-杂草的概念与生物学特性p99）'><span>1. 杂草的概念与生物学特性（P99）</span></h3><ul><li><p><strong><span>杂草的概念</span></strong><span>：杂草是一类能够在人类试图维持某种植被状态的生境中不断自然延续其种群，并影响到人工植被状态维持的一类植物</span></p></li><li><p><strong><span>杂草的适应性</span></strong></p><ol start='' ><li><p><span>抗逆性</span></p></li><li><p><span>可塑性</span></p></li><li><p><span>生长势</span></p></li><li><p><span>杂合性</span></p></li><li><p><span>拟态性</span></p><ul><li><span>伴生杂草：在形态、生长发育规律以及对生态环境的要求上与作物相似，很难将这些伴生杂草与其伴生的作物分开或从中清除。常见：</span><strong><span>稗草和水稻</span></strong><span>、</span><strong><span>野燕麦和麦类</span></strong><span>、</span><strong><span>狗尾草和谷子</span></strong></li></ul></li></ol></li><li><p><strong><span>杂草的繁殖能力</span></strong></p><ol start='' ><li><span>多实性</span></li><li><span>繁殖方式多样性</span></li><li><span>子实传播方式多样性</span></li><li><span>种子的寿命长且萌发不齐</span></li><li><span>有性生殖方式复杂</span></li></ol></li></ul><p>&nbsp;</p><h3 id='2-杂草生态学p101）'><span>2. 杂草生态学（P101）</span></h3><ul><li><p><strong><u><span>杂草个体生态（种子休眠、种子萌发）</span></u></strong></p></li><li><p><strong><u><span>杂草种群生态</span></u></strong></p><ol start='' ><li><p><span>杂草种子库</span></p></li><li><p><span>杂草的种群动态</span></p></li><li><p><span>杂草与作物间的竞争</span></p></li><li><p><strong><span>杂草的竞争临界期和经济阈值</span></strong></p><ul><li><span>竞争临界期：当杂草生长存留造成的作物产量损失量和无草状态下作物产量增加量相等时的天数</span></li><li><span>经济阈值：危害经济阈值指防治后作物增加的效益和防治费用相等的草害情况</span></li></ul></li><li><p><strong><span>化感作用</span></strong><span>：</span><u><span>植物向环境释放出特定的化学物质，影响周围其他植物生长发育的现象</span></u></p><ul><li><p><span>具有化感作用的化学物质被称作化感作用化合物</span></p><ul><li><span>直接由植物体分泌、分解而来为</span><u><span>原生化感作用化合物</span></u><span>，产生的化感作用称为</span><u><span>真化感作用</span></u></li><li><span>植物经微生物等降解产生的化感作用化合物，间接来自于植物，称为</span><u><span>次生化感作用化合物</span></u><span>，产生的化感作用称为</span><u><span>功能性化感作用</span></u></li></ul></li></ul><ol start='' ><li><p><span>化感作用化合物及其来源：多是植物次生代谢化合物，通过</span><u><span>挥发、淋溶、根分泌和植物残体的分解</span></u><span>等方式进入环境</span></p></li><li><p><span>化感作用机理和意义：化感作用化合物影响植物生长发育和生理生化代谢过程，作用机理有：</span></p><ol start='' ><li><u><span>抑制种子萌发和幼苗生长</span></u></li><li><u><span>抑制蛋白质合成及细胞分裂</span></u></li><li><u><span>抑制光合作用和呼吸作用</span></u></li><li><u><span>抑制酶活性</span></u></li><li><u><span>影响水分代谢和营养的吸收</span></u></li></ol></li></ol><ul><li><span>化感作用是植物间竞争的一种手段，可以利用化感作用</span><u><span>培养化感作物品种</span></u><span>，达到少用或不用除草剂的目的。此外，</span><u><span>合理的作物轮作和套作</span></u><span>也可以达到抑制杂草的发生与危害的目的。</span></li><li><span>化感作用也可以用来</span><u><span>研制、开发新除草剂品种（如激素类除草剂）</span></u></li></ul></li></ol></li><li><p><strong><u><span>杂草群落生态</span></u></strong></p><p><span>农田杂草在一定环境因素的综合影响下，形成不同杂草群落的有机组合，这样的在一定环境条件下重复出现的杂草种群组合，称为杂草群落</span></p><ul><li><p><span>杂草群落与环境因子之间有密切关系。杂草群落的形成、结构、组成、分布一方面直接受土壤水分、肥力、酸碱度、耕作、地形和地貌等影响，另一方面间接受到轮作和种植制度、季节、气候和海拔等影响</span></p></li><li><p><strong><span>杂草群落的演替及顶级群落</span></strong></p><ul><li><p><u><span>群落演替</span></u><span>：指杂草群落在农业措施和环境条件变换作用下，一个杂草群落为另一个杂草群落取代的过程</span></p></li><li><p><u><span>顶级杂草群落</span></u><span>：一种可以适应某种农业措施作用总和的动态稳定状态</span></p><ol start='' ><li><span>水稻田：以稗草为优势种的杂草群落</span></li><li><span>稻茬麦田：以看麦娘为优势种的杂草群落</span></li><li><span>北方旱茬麦田：以野燕麦为优势种的杂草群落</span></li><li><span>秋熟旱作物田：大多为以马唐为优势种的杂草群落</span></li></ol></li></ul></li></ul></li></ul><p>&nbsp;</p><h3 id='3-杂草的分类p109）'><span>3. 杂草的分类（P109）</span></h3><ul><li><p><span>形态学分类</span></p><ol start='' ><li><p><u><span>禾草科</span></u><span>：主要包括禾本科杂草</span></p><ul><li><span>看麦娘、日本看麦娘（看麦娘是稻麦油菜连作区危害最为严重的杂草，杂草群落优势种）</span></li><li><span>野燕麦（旱性麦地主要杂草，多为杂草群落优势种）</span></li><li><span>菵草（稻茬麦（油菜）田主要杂草）</span></li><li><span>马唐、毛马唐（秋熟旱地危害最终的两种主要杂草）</span></li><li><span>稗（稻田危害最为严重一类杂草）</span></li><li><span>牛筋草、向茅、千金子、硬草，狗尾草等</span></li></ul></li><li><p><u><span>莎草科</span></u><span>：主要包括莎草科杂草</span></p><ul><li><span>异形莎草、香附子、水莎草、牛毛毡等</span></li></ul></li><li><p><u><span>阔叶草科</span></u><span>：包括所有的双子叶植物杂草及部分单子叶植物杂草</span></p><ul><li><span>矮慈姑（多发于中和晚季水稻）</span></li><li><span>芥菜（夏熟作物田主要杂草，可作蔬菜）</span></li><li><span>菟丝子、铁苋菜、马齿苋等</span></li></ul></li></ol></li><li><p><span>其他分类（不作要求）</span></p><ul><li><span>生物学特性分类：一年生、二年生、多年生杂草</span></li><li><span>茎的性质：草本类杂草、木本类杂草</span></li><li><span>营养方式：自养型杂草、寄生型杂草</span></li><li><span>生境生态学分类：耕地杂草、杂类杂草、水生杂草、草地杂草、森林杂草、环境杂草</span></li><li><span>系统学分类：禾本科、莎草科、泽泻科、菊科、十字花科··· ···</span></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第六章农业有害生物的发生规律及预测'><strong><span>第六章：农业有害生物的发生规律及预测</span></strong></h2><h3 id='1-植物病害的流行p156）'><span>1. 植物病害的流行（P156）</span></h3><ul><li><p><span>病害流行的类型</span></p><ol start='' ><li><p><strong><span>单循环病害</span></strong></p><p><span>指在病害循环过程中只有初侵染而没有再侵染，或有再侵染但是作用较小的病害</span></p><ul><li><span>多为</span><u><span>种子传播的病害或土壤传播</span></u><span>的全株性或系统性病害。其</span><u><span>自然传播距离较近，传播效能较小</span></u></li><li><span>病原物可产生抗逆性较强的休眠体越冬，越冬率高，较稳定。每年的流行程度主要取决于初始菌量，初侵染结束后当年病害发生的数量就基本定局。其在一个生长季节中菌量增长幅度不大，但能够逐年积累，稳定增长，若干年后导致较大的流行，也称为</span><u><span>“积年流行病害”</span></u></li><li><span>例如：水稻恶苗病、稻曲病、大麦条纹病、小麦散黑穗病、小麦腥黑病、小麦全蚀病、小麦线虫病、玉米丝黑穗病、棉花枯萎病和黄萎病以及多种果树病毒病等</span></li></ul></li><li><p><strong><span>多循环病害</span></strong></p><p><span>一个生长季节中病原物能够连续繁殖多代，从而发生多次再侵染的病害</span></p><ul><li><span>大多数是</span><u><span>局部侵染</span></u><span>，寄主的感病时间长，病害的潜育期短。病原物的</span><u><span>增殖率高，但其寿命不长，对环境条件敏感</span></u><span>，不利条件下会迅速死亡</span></li><li><span>病原物越冬率低，越冬后存活的菌量不高，在有利条件下增长率很高，病害增幅大，可以在一个生长季节完成菌量积累，造成当年病害严重流行，又称为</span><u><span>“单年流行病害”</span></u></li><li><span>例如：稻瘟病、稻白叶枯病、麦类锈病、玉米大小斑病、马铃薯晚疫病等</span></li></ul></li></ol><ul><li><p><strong><span>防治</span></strong></p><ul><li><span>防治单循环病害，消灭初始菌源很重要，除选用抗病品种外，田间卫生、土壤消毒、种子消毒、拔除病株等措施都有良好防效</span></li><li><span>防治多循环病害，应当种植抗病品种，采用药剂防治和农业防治措施，降低病害的增长率</span></li></ul></li></ul></li><li><p><span>病害流行因素</span></p><ul><li><span>应依据病害三角进行分析，包括存在感病寄主植物、强致病性的病原物、有利的环境条件等</span></li></ul></li></ul><p>&nbsp;</p><h3 id='2-植物病虫害预测p173）'><span>2. 植物病虫害预测（P173）</span></h3><ul><li><p><span>害虫预测方法</span></p><ol start='' ><li><p><span>发生期预测</span></p><ul><li><p><span>发育进度预测法</span></p><p><span>根据害虫田间发育进度的调查结果，参考当时气温预报，加上相应虫态历期，推算以后虫态发生时间</span></p><ol start='' ><li><p><strong><span>历期法</span></strong></p><p><span>对前一虫态（或虫期）的田间发育进度（如化蛹率、羽化率）进行系统调查，当调查到其百分比达到始盛期（16%）、高峰期（50%）和盛末期（84%）时，分别加上当时气温下各虫期的历期，就能推导出后面某一虫期的发生时间</span></p></li><li><p><strong><span>分龄分级法</span></strong></p><p><span>选择害虫幼虫期和蛹期做1~2次发育进度调查，记录幼虫各龄的数量，分别计算百分率。如调查蛹，应计算各级蛹在样本中的百分率，根据各虫龄的累计百分率，确定可以用来预测始盛期（16%）、高峰期（50%）和盛末期（84%）的主要虫源，然后根据该虫源从该虫龄到成虫所需的发育天数，进行预测</span></p></li><li><p><strong><span>期距法</span></strong></p><p><span>期距指各虫期在田间出现始盛期（16%）、高峰期（50%）和盛末期（84%）间隔的时间距离，是多年调查的虫情资料中得出的经验值或历史平均值。查准害虫当前发育进度，再加上期距，即可准确预测下一虫态或虫期的发生时间</span></p></li></ol></li><li><p><span>物候法（不作要求）</span></p></li><li><p><span>有效积温法（不作要求）</span></p></li></ul></li><li><p><span>发生量预测（不作要求）</span></p></li></ol></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第七章农业有害生物的防治技术与策略'><strong><span>第七章：农业有害生物的防治技术与策略</span></strong></h2><h3 id='1-有害生物防治技术p185）'><span>1. 有害生物防治技术（P185）</span></h3><p><span>分为植物检疫、农业防治、抗害品种的利用、生物防治、物理机械防治和化学防治六大类</span></p><ul><li><p><strong><span>植物检疫</span></strong></p><ul><li><span>定义：是国家或地区政府，为防止危险性有害生物随植物及其产品的人为传播，以法律手段和行政措施强制实施的保护性植物保护措施</span></li></ul></li><li><p><strong><span>农业防治</span></strong></p><ul><li><span>通过适宜的栽培措施降低有害生物种群数量或减少其侵染可能性，培育健壮植物，增强植物抗害、耐害和自身补偿能力，以减少有害生物危害损失的一种植物保护措施</span></li></ul><ol start='' ><li><span>改进耕作制度</span></li><li><span>使用无害种苗</span></li><li><span>调整播种方式</span></li><li><span>加强田间管理</span></li><li><span>安全收获</span></li></ol></li><li><p><strong><span>作物抗害品种的利用</span></strong></p><ul><li><p><span>植物的抗害性与抗害机制</span></p><ul><li><p><span>植物的抗害性类型</span></p><ol start='' ><li><p><span>依据抗性表现的程度可以分为</span><u><span>免疫、高抗、中抗、中感、高感</span></u></p></li><li><p><span>依据其对病菌生理小种或害虫生物型的反应，分为</span><u><span>垂直抗性、水平抗性</span></u></p><ul><li><span>垂直抗性：也称专化抗性或特异抗性，指作物品种只对一种或几种病菌生理小种或害虫生物型表现抗性，而对另一些则不表现抗性。垂直抗性通常表现出较高水平的抗性，但较容易因病菌生理小种或害虫生物型的变化而丧失</span></li><li><span>水平抗性：作物品种对病菌的各种生理小种或害虫的各种生物型均具有相似的抗性，抗性水平常较低，但不会因病菌生理小种或害虫生物型的变化而丧失</span></li></ul></li></ol></li><li><p><span>植物的抗害机制</span></p><ol start='' ><li><u><span>抗选择性</span></u><span>（病虫害不选择植物侵害）</span></li><li><u><span>抗生性</span></u><span>（病虫害侵染后死亡、生长受抑制）</span></li><li><u><span>避害性</span></u><span>（病虫害虽然侵染，但是不能造成危害或损失；作物易受害期和病虫发生期错开）</span></li><li><u><span>耐害性</span></u><span>（病虫害侵害后，植物忍受、补偿能力较强，不表现明显症状或产量损失）</span></li></ol></li></ul></li><li><p><span>作物抗害品种的选育</span></p><ul><li><p><span>育种目标的确定（不作要求）</span></p></li><li><p><span>抗源材料的收集（不作要求）</span></p></li><li><p><span>抗性育种方法</span></p><ol start='' ><li><p><span>传统技术</span></p></li><li><p><span>诱变育种</span></p></li><li><p><span>组织培养技术</span></p></li><li><p><span>分子生物学技术</span></p><ul><li><span>解决了传统育种技术无法克服的远源杂交障碍问题</span></li><li><span>可以通过基因改造，创造新抗性</span></li><li><span>基因改造也可以去除某些病毒侵染时所需的寄主体内具备的识别因子或专一性毒素受体</span></li><li><span>可以利用有害生物关键基因构建抗害遗传材料，通过基因干扰进行抗害育种</span></li></ul></li></ol></li></ul></li><li><p><u><span>作物抗害品种的利用</span></u><span>（合理利用）</span></p><ol start='' ><li><span>利用抗性品种应该纳入综合防治体系，与其他综防措施相配套</span></li><li><span>适宜的利用垂直抗性和水平抗性，以延缓抗性丧失</span></li><li><span>利用群体遗传学方法原理，采取适宜的治理措施，例如不同抗性机制的品种轮作、镶嵌式种植，利用庇护地措施等</span></li><li><span>培育多抗性品种，使之兼抗多种有害生物</span></li></ol></li></ul></li><li><p><strong><span>生物防治</span></strong></p><p><span>利用有益生物及期产物控制有害生物种群数量的一种防治技术</span></p><ul><li><p><span>生物防治的</span><u><span>途径</span></u></p><ul><li><span>保护有益生物</span></li><li><span>引进有益生物</span></li><li><span>有益生物的人工繁殖与释放</span></li><li><span>生物产物的开发利用</span></li></ul></li><li><p><span>生物防治技术的</span><u><span>应用</span></u><span>（了解，举出例子）</span></p></li><li><p><span>生物防治</span><u><span>特点</span></u></p><ul><li><span>从保护生态环境和可持续发展的角度来说，生物防治是最好的有害生物防治方法</span></li><li><span>从有害生物治理和农业生产的角度看，生物防治仍有很大的局限性，尚无法满足农业生产和有害生物治理的需要</span></li><li><span>从发展的角度看，面对环境与可持续发展问题，生物防治措施与生态环境保护具有相融性，与农业可持续发展具有统一性</span></li></ul></li></ul></li><li><p><strong><span>物理防治</span></strong></p><ul><li><span>常用方法有：人工和简单机械捕杀、温度控制、</span><u><span>诱杀</span></u><span>（</span><u><span>灯光诱杀、食饵诱杀、潜所诱杀</span></u><span>）、阻隔分离和微波辐射等</span></li></ul></li><li><p><strong><span>化学防治</span></strong></p><ul><li><p><span>农药的种类</span></p><ol start='' ><li><span>杀虫剂（红色）</span></li><li><span>杀菌剂（黑色）</span></li><li><span>除草剂（绿色）</span></li><li><span>杀鼠剂（蓝色）</span></li><li><span>植物生长调节剂（黄色）</span></li></ol></li><li><p><span>农业的剂型</span></p><ul><li><span>乳油、粉剂、可湿性粉剂、粒剂、可溶性粉剂、悬浮剂、缓释剂、超低量喷雾剂、种衣剂、烟剂</span></li></ul></li><li><p><span>农药使用方法</span></p><ul><li><span>喷雾法、喷粉法、撒施或泼浇法、拌种、毒饵法、熏蒸法等</span></li></ul></li><li><p><span>农药登记的三个阶段</span></p><ul><li><span>田间试验阶段</span></li><li><u><span>临时登记阶段</span></u><span>（有效期1年，可以续展，累积有效期不超过三年）</span></li><li><span>正式登记阶段（有效期5年，可以续展登记）</span></li></ul></li></ul></li></ul><p>&nbsp;</p><h3 id='2-有害生物防治措施p213）'><span>2. 有害生物防治措施（P213）</span></h3><ul><li><span>我国植物保护方针：“</span><strong><u><span>预防为主，综合防治</span></u></strong><span>”（1975年农业部主持召开的植物保护工作会议）</span></li><li><span>综合防治目标：</span><strong><u><span>经济效益、生态效益和社会效益</span></u></strong></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第九章植物保护技术推广'><strong><span>第九章：植物保护技术推广</span></strong></h2><h3 id='1-植物保护技术推广形式p285）'><span>1. 植物保护技术推广形式（P285）</span></h3><ol start='' ><li><span>服务式技术推广</span></li><li><span>行政式技术推广</span></li><li><span>教育式技术推广</span></li></ol><p>&nbsp;</p><h3 id='2-植物保护技术推广体系p286）'><span>2. 植物保护技术推广体系（P286）</span></h3><ol start='' ><li><span>植保教育</span></li><li><span>植保科研</span></li><li><span>植保器材供应</span></li><li><span>植保技术推广管理</span></li></ol><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='题型'><strong><span>题型</span></strong></h2><ol start='' ><li><span>填空题           （共20分，每空0.5分）</span></li><li><span>不定项选择题（共20分，每题2分）</span></li><li><span>判断题            （共10分，每题1分）</span></li><li><span>名词解释        （共10分，每题2分）</span></li><li><span>简答题            （共20分，每题5分）</span></li><li><span>论述题            （共20分，每题10分）</span></li></ol><ul><li><span>如有出入，以卷面实际标注为准</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='附件'><strong><span>附件</span></strong></h2><h3 id='植物保护通论md'><span>植物保护通论.md</span></h3><p><a href='https://njau-my.sharepoint.cn/:t:/g/personal/14819131_njau_edu_cn/ETzn405q4bhBpHtjEWxOSQ8B0QfAex9ztwIz9FNb1Iic0Q?e=cQ0aqJ' target='_blank' class='url'>https://njau-my.sharepoint.cn/:t:/g/personal/14819131_njau_edu_cn/ETzn405q4bhBpHtjEWxOSQ8B0QfAex9ztwIz9FNb1Iic0Q?e=cQ0aqJ</a></p><p><strong><span>密码：14819131</span></strong></p><p><strong><span>推荐使用Typora打开.md文件</span></strong></p><p>&nbsp;</p><h3 id='植物保护通论重点---于娜---录音m4a'><span>植物保护通论重点—于娜—录音.m4a</span></h3><p><a href='https://njau-my.sharepoint.cn/:u:/g/personal/14819131_njau_edu_cn/EdA64k3lnRBBir1veuO7SiEBhU5qZBPa7jd6j5H6joAKvQ?e=FWL4Qt' target='_blank' class='url'>https://njau-my.sharepoint.cn/:u:/g/personal/14819131_njau_edu_cn/EdA64k3lnRBBir1veuO7SiEBhU5qZBPa7jd6j5H6joAKvQ?e=FWL4Qt</a></p><p><strong><span>密码：14819131</span></strong></p></div></div>
+</body>
+</html>
