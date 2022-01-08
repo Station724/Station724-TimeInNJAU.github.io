@@ -1,0 +1,842 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+
+
+:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>作物学通论</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='作物学通论'><span>作物学通论</span></h1><p>&nbsp;</p><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3735"><a class="md-toc-inner" href="#作物学通论">作物学通论</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3740"><a class="md-toc-inner" href="#第一章作物学概述"><strong>第一章：作物学概述</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3741"><a class="md-toc-inner" href="#1-基本概念">1. 基本概念</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3751"><a class="md-toc-inner" href="#2-作物学的作用性质特点">2. 作物学的作用、性质、特点</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3786"><a class="md-toc-inner" href="#3-作物面积单产总产排名">3. 作物面积、单产、总产排名</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3794"><a class="md-toc-inner" href="#4-粮食安全的技术途径我国作物生产亟待解决的问题）">4. 粮食安全的技术途径（我国作物生产亟待解决的问题）</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3812"><a class="md-toc-inner" href="#作物学的分类起源与分布"><strong>作物学的分类、起源与分布</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3813"><a class="md-toc-inner" href="#1-作物的概念">1. 作物的概念</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3825"><a class="md-toc-inner" href="#2-作物分类-★">2. 作物分类 ★</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3886"><a class="md-toc-inner" href="#3-起源于我国的植物">3. 起源于我国的植物</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3906"><a class="md-toc-inner" href="#4-作物传播的重要性">4. 作物传播的重要性</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3916"><a class="md-toc-inner" href="#5-作物传播的途径">5. 作物传播的途径</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3932"><a class="md-toc-inner" href="#6-影响作物分布与生产的因素★">6. 影响作物分布与生产的因素★</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3946"><a class="md-toc-inner" href="#7-作物单产总产水平最高国家★">7. 作物单产、总产水平最高国家★</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3947"><a class="md-toc-inner" href="#8-我国种植业趋于的划分与优势产业带☆">8. 我国种植业趋于的划分与优势产业带☆</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3968"><a class="md-toc-inner" href="#第三章作物品种选育与良种繁殖"><strong>第三章：作物品种选育与良种繁殖</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3969"><a class="md-toc-inner" href="#1-品种改良目标育种目标）">1. 品种改良目标（育种目标）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3979"><a class="md-toc-inner" href="#2-作物品质">2. 作物品质</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3989"><a class="md-toc-inner" href="#3-制定育种目标的原则">3. 制定育种目标的原则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3999"><a class="md-toc-inner" href="#4-种质资源的概念与分类">4. 种质资源的概念与分类</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4023"><a class="md-toc-inner" href="#5-作物繁殖方式">5. 作物繁殖方式</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4029"><a class="md-toc-inner" href="#6-作物的品种类型">6. 作物的品种类型</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4039"><a class="md-toc-inner" href="#7-引种的概念与规律">7. 引种的概念与规律</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4064"><a class="md-toc-inner" href="#8-引种的原则">8. 引种的原则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4074"><a class="md-toc-inner" href="#9-选择育种">9. 选择育种</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4078"><a class="md-toc-inner" href="#10-杂交育种的概念亲本选配原则">10. 杂交育种的概念，亲本选配原则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4093"><a class="md-toc-inner" href="#11-杂种优势的概念表现特点利用杂种优势的要求">11. 杂种优势的概念、表现特点、利用杂种优势的要求</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4120"><a class="md-toc-inner" href="#第四章作物生长发育与产量品质形成"><strong>第四章：作物生长发育与产量品质形成</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4121"><a class="md-toc-inner" href="#1-生长发育的概念">1. 生长、发育的概念</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4127"><a class="md-toc-inner" href="#2-生长和发育的关系">2. 生长和发育的关系</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4140"><a class="md-toc-inner" href="#3-s形生长曲线的应用">3. S形生长曲线的应用</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4148"><a class="md-toc-inner" href="#4-生育期物候期和生育时期">4. 生育期、物候期和生育时期</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4156"><a class="md-toc-inner" href="#5-生长中心养分分配c-n代谢与栽培目标">5. 生长中心、养分分配、C-N代谢与栽培目标</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4187"><a class="md-toc-inner" href="#6-休眠和后熟">6. 休眠和后熟</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4198"><a class="md-toc-inner" href="#7-有性种子萌发过程">7. 有性种子萌发过程</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4206"><a class="md-toc-inner" href="#8-种子萌发需要的外界条件">8. 种子萌发需要的外界条件</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4224"><a class="md-toc-inner" href="#9-根系的类型">9. 根系的类型</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4230"><a class="md-toc-inner" href="#10-根系的功能">10. 根系的功能</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4244"><a class="md-toc-inner" href="#11-影响根系生长的主要因素">11. 影响根系生长的主要因素</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4258"><a class="md-toc-inner" href="#12-茎枝的功能">12. 茎枝的功能</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4272"><a class="md-toc-inner" href="#13-叶层分组及功能">13. 叶层分组及功能</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4283"><a class="md-toc-inner" href="#14-地下部和地上部的相互关系">14. 地下部和地上部的相互关系</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4291"><a class="md-toc-inner" href="#15-营养生长与生殖生长的关系">15. 营养生长与生殖生长的关系</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4299"><a class="md-toc-inner" href="#16-营养器官间的相互关系">16. 营养器官间的相互关系</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4307"><a class="md-toc-inner" href="#第五章作物与生态环境"><strong>第五章：作物与生态环境</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4308"><a class="md-toc-inner" href="#1-生态因子的概念分类和作用机制限制方式">1. 生态因子的概念、分类和作用机制、限制方式</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4320"><a class="md-toc-inner" href="#2-光周期理论的应用">2. 光周期理论的应用</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4330"><a class="md-toc-inner" href="#3-温度对作物生长的影响">3. 温度对作物生长的影响</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4336"><a class="md-toc-inner" href="#4-作物三基点温度的特征">4. 作物三基点温度的特征</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4340"><a class="md-toc-inner" href="#5-积温活动积温有效积温">5. 积温、活动积温、有效积温</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4348"><a class="md-toc-inner" href="#6-积温在农业生产上的应用">6. 积温在农业生产上的应用</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4352"><a class="md-toc-inner" href="#7-温度逆境对作物的危害及防御措施低温高温逆温）">7. 温度逆境对作物的危害及防御措施（低温、高温、逆温）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4353"><a class="md-toc-inner" href="#8-作物对水分的需求特点">8. 作物对水分的需求特点？ </a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4357"><a class="md-toc-inner" href="#9-水分逆境对作物的影响">9. 水分逆境对作物的影响</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4359"><a class="md-toc-inner" href="#10-co2的时空变化规律及与作物产量的关系">10. CO2的时空变化规律及与作物产量的关系 </a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4361"><a class="md-toc-inner" href="#11-温室气体的主要成分和对作物影响">11. 温室气体的主要成分和对作物影响</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4363"><a class="md-toc-inner" href="#12-作物必需的营养元素">12. 作物必需的营养元素</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4367"><a class="md-toc-inner" href="#13-主要矿质元素的作用及营养诊断">13. 主要矿质元素的作用及营养诊断</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4368"><a class="md-toc-inner" href="#14-作物的需肥量和需肥特性">14. 作物的需肥量和需肥特性</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4376"><a class="md-toc-inner" href="#15-营养临界期最大效率期">15. 营养临界期、最大效率期</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4377"><a class="md-toc-inner" href="#16-土壤性质和结构">16. 土壤性质和结构</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4388"><a class="md-toc-inner" href="#第六章作物生产技术"><strong>第六章：作物生产技术</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4389"><a class="md-toc-inner" href="#1-土壤耕作的概念作用和意义">1. 土壤耕作的概念、作用和意义</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4403"><a class="md-toc-inner" href="#2-土壤耕作的类型">2. 土壤耕作的类型</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4411"><a class="md-toc-inner" href="#3-土壤培肥的途径">3. 土壤培肥的途径</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4415"><a class="md-toc-inner" href="#4-播种期确定的依据">4. 播种期确定的依据</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4427"><a class="md-toc-inner" href="#5-播种期和播种量的确定">5. 播种期和播种量的确定</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4433"><a class="md-toc-inner" href="#6-育苗移栽的作用和类型">6. 育苗移栽的作用和类型</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4457"><a class="md-toc-inner" href="#7-地膜覆盖的效应">7. 地膜覆盖的效应</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4471"><a class="md-toc-inner" href="#8-肥料利用率的变化规律">8. 肥料利用率的变化规律</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4489"><a class="md-toc-inner" href="#9-需水临界期">9. 需水临界期</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4514"><a class="md-toc-inner" href="#10-植物生长调节剂">10. 植物生长调节剂</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n4549"><a class="md-toc-inner" href="#11-病害防治">11. 病害防治</a></span></p></div><p>&nbsp;</p><h2 id='第一章作物学概述'><strong><span>第一章：作物学概述</span></strong></h2><h3 id='1-基本概念'><span>1. 基本概念</span></h3><ul><li><strong><span>农业</span></strong><span>：对植物/动物进行种植、饲养或管理，并利用其产品的综合性产业</span></li><li><strong><span>作物学</span></strong><span>：有关大田作物生产和改良的科学理论与技术</span></li><li><strong><span>作物栽培学与耕作学</span></strong><span>：研究作物生长发育和产量、品质形成规律及其与环 境条件的关系，探索通过栽培管理、生长调控、优化决策等途径，实现作 物高产、优质、高效及其可持续性的理论、方法与技术</span></li><li><strong><span>作物遗传育种学</span></strong><span>：研究作物品种选育和遗传改良及种子生产的理论、方法与技术</span></li></ul><h3 id='2-作物学的作用性质特点'><span>2. 作物学的作用、性质、特点</span></h3><ul><li><p><strong><span>作用</span></strong></p><ol start='' ><li><span>人民</span><u><span>生活资料</span></u><span>的重要来源</span></li><li><u><span>工业原料</span></u><span>的重要来源</span></li><li><u><span>出口创汇</span></u><span>的重要物资</span></li><li><u><span>较高的种植业比重</span></u></li><li><span>农业</span><u><span>现代化的主要内容</span></u></li></ol></li><li><p><strong><span>性质</span></strong></p><ul><li><span>应用学科、综合学科、生态学科</span></li></ul></li><li><p><strong><span>特点</span></strong></p><ol start='' ><li><span>严格的</span><u><span>地域性</span></u></li><li><span>明显的</span><u><span>季节性</span></u></li><li><span>生长的</span><u><span>规律性</span></u></li><li><span>技术的</span><u><span>实用性</span></u></li><li><span>生产的</span><u><span>连续性</span></u></li><li><span>系统的</span><u><span>复杂性</span></u></li></ol></li></ul><h3 id='3-作物面积单产总产排名'><span>3. 作物面积、单产、总产排名</span></h3><ul><li><strong><span>种植面积最大的作物</span></strong>
+<span>小麦、水稻、玉米（玉米、水稻、小麦—中国）</span></li><li><strong><span>单产最高的作物</span></strong>
+<span>玉米、水稻、小麦（水稻、玉米、小麦—中国）</span></li><li><strong><span>总产最高的作物</span></strong>
+<span>玉米、小麦、水稻（玉米、水稻、小麦—中国）</span></li></ul><h3 id='4-粮食安全的技术途径我国作物生产亟待解决的问题）'><span>4. 粮食安全的技术途径（我国作物生产亟待解决的问题）</span></h3><ol start='' ><li><span>保护和合理</span><u><span>利用农业资源</span></u><span> </span></li><li><u><span>提高</span></u><span>单位面积</span><u><span>产量</span></u><span> </span></li><li><u><span>改善</span></u><span>作物</span><u><span>品质</span></u><span> </span></li><li><u><span>加强</span></u><span>产后</span><u><span>加工与利用</span></u></li><li><u><span>调整</span></u><span>粮食发展</span><u><span>战略</span></u></li><li><u><span>开辟</span></u><u><span>新的食物源</span></u></li><li><u><span>自给自足，适当进口</span></u></li></ol><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='作物学的分类起源与分布'><strong><span>作物学的分类、起源与分布</span></strong></h2><h3 id='1-作物的概念'><span>1. 作物的概念</span></h3><ul><li><p><span>泛指人类栽培利用的一切植物，具有一定的经济价值</span></p><ul><li><span>广义：指农作物、园艺作物和林木</span></li><li><span>狭义：农作物（庄稼/大田作物）</span></li></ul><blockquote><p><span>五谷：稻、粟、黍、菽、 稷</span></p></blockquote><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart329" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="300.6000061035156" style="max-width: 470px;" viewBox="0 0.0000019073486328125 470 300.6000061035156"><style>#mermaidChart329{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart329 .error-icon{fill:#552222;}#mermaidChart329 .error-text{fill:#552222;stroke:#552222;}#mermaidChart329 .edge-thickness-normal{stroke-width:2px;}#mermaidChart329 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart329 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart329 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart329 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart329 .marker{fill:#333333;}#mermaidChart329 .marker.cross{stroke:#333333;}#mermaidChart329 svg{font-family:sans-serif;font-size:16px;}#mermaidChart329 .label{font-family:sans-serif;color:#333;}#mermaidChart329 .label text{fill:#333;}#mermaidChart329 .node rect,#mermaidChart329 .node circle,#mermaidChart329 .node ellipse,#mermaidChart329 .node polygon,#mermaidChart329 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart329 .node .label{text-align:center;}#mermaidChart329 .node.clickable{cursor:pointer;}#mermaidChart329 .arrowheadPath{fill:#333333;}#mermaidChart329 .edgePath .path{stroke:#333333;stroke-width:1.5px;}#mermaidChart329 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart329 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart329 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart329 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart329 .cluster text{fill:#333;}#mermaidChart329 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80,100%,96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart329:root{--mermaid-font-family:sans-serif;}#mermaidChart329:root{--mermaid-alt-font-family:sans-serif;}#mermaidChart329 flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B1" id="L-A-B1" style="opacity: 1;"><path class="path" d="M58.32635940689597,103.5999984741211L85,78.5999984741211L110,78.5999984741211" marker-end="url(#arrowhead3088)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead3088" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-A LE-B2" id="L-A-B2" style="opacity: 1;"><path class="path" d="M58.32635940689597,149.1999969482422L85,174.1999969482422L126,174.1999969482422" marker-end="url(#arrowhead3089)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead3089" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C1" id="L-B2-C1" style="opacity: 1;"><path class="path" d="M167.9790792182552,151.39999771118164L219,78.5999984741211L244,78.5999984741211" marker-end="url(#arrowhead3090)" style="fill:none"></path><defs><marker id="arrowhead3090" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-C1 LE-D1" id="L-C1-D1" style="opacity: 1;"><path class="path" d="M317.9581584365104,55.79999923706055L353,30.799999237060547L378,30.799999237060547" marker-end="url(#arrowhead3091)" style="fill:none"></path><defs><marker id="arrowhead3091" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-C1 LE-D2" id="L-C1-D2" style="opacity: 1;"><path class="path" d="M317.9581584365104,101.39999771118164L353,126.39999771118164L378,126.39999771118164" marker-end="url(#arrowhead3092)" style="fill:none"></path><defs><marker id="arrowhead3092" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C2" id="L-B2-C2" style="opacity: 1;"><path class="path" d="M178,174.1999969482422L219,174.1999969482422L244,174.1999969482422" marker-end="url(#arrowhead3093)" style="fill:none"></path><defs><marker id="arrowhead3093" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-B2 LE-C3" id="L-B2-C3" style="opacity: 1;"><path class="path" d="M167.9790792182552,196.99999618530273L219,269.7999954223633L244,269.7999954223633" marker-end="url(#arrowhead3094)" style="fill:none"></path><defs><marker id="arrowhead3094" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-3936" transform="translate(34,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">植物</div></foreignObject></g></g></g><g class="node default" id="flowchart-B1-3937" transform="translate(152,78.5999984741211)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">野生植物</div></foreignObject></g></g></g><g class="node default" id="flowchart-B2-3939" transform="translate(152,174.1999969482422)" style="opacity: 1;"><rect rx="5" ry="5" x="-26" y="-22.800000190734863" width="52" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12.800000190734863)"><foreignObject width="32" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">作物</div></foreignObject></g></g></g><g class="node default" id="flowchart-C1-3941" transform="translate(286,78.5999984741211)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">农艺植物</div></foreignObject></g></g></g><g class="node default" id="flowchart-D1-3943" transform="translate(420,30.799999237060547)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">粮食作物</div></foreignObject></g></g></g><g class="node default" id="flowchart-D2-3945" transform="translate(420,126.39999771118164)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">经济作物</div></foreignObject></g></g></g><g class="node default" id="flowchart-C2-3947" transform="translate(286,174.1999969482422)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">园艺植物</div></foreignObject></g></g></g><g class="node default" id="flowchart-C3-3949" transform="translate(286,269.7999954223633)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22.800000190734863" width="84" height="45.60000038146973" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12.800000190734863)"><foreignObject width="64" height="25.600000381469727"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">林木植物</div></foreignObject></g></g></g></g></g></g></svg></div></li></ul><h3 id='2-作物分类-★'><span>2. 作物分类 ★</span></h3><ul><li><p><span>据作物用途和植物学分类系统相结合分类</span></p><ol start='' ><li><p><span>粮食作物</span></p><blockquote><ol start='' ><li><span>禾谷类作物</span></li><li><span>豆类作物</span></li><li><span>薯类作物</span></li></ol></blockquote></li><li><p><span>经济作物</span></p><blockquote><ol start='' ><li><span>纤维作物</span></li><li><span>油料作物</span></li><li><span>糖料作物</span></li><li><span>嗜好类作物</span></li></ol></blockquote></li><li><p><span>饲料及绿肥作物</span></p></li><li><p><span>药用作物</span></p></li><li><p><span>特用作物</span></p></li></ol></li><li><p><span>按作物的生物学特性分类</span></p><ol start='' ><li><p><span>喜温作物</span></p><blockquote><p><span>在全生育期中需要的积温都较高，生长发育的最低 温度为10℃左右</span>
+<span>如水稻、玉米、高粱、棉花、烟草、甘蔗、花生、粟等</span></p></blockquote></li><li><p><span>耐寒作物</span></p><blockquote><p><span>全生育期需要的积温比较低，生长发育的最低温度 在1～3℃左右</span>
+<span>如麦类作物、油菜、蚕豆等</span></p></blockquote></li></ol></li><li><p><span>按作物对光周期的反应特性分类</span></p><ol start='' ><li><span>长日照作物  【麦类作物、油菜等】</span></li><li><span>短日照作物  【水稻、玉米、棉花、烟草等】</span></li><li><span>中性作物      【荞麦、豌豆等】</span></li><li><span>定日作物      【甘蔗的某些品种】</span></li></ol></li><li><p><span>按作物对</span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="4.433ex" height="1.934ex" role="img" focusable="false" viewBox="0 -705 1959.6 855" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.339ex;"><defs><path id="MJX-6-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path id="MJX-6-TEX-I-1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path><path id="MJX-6-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-6-TEX-I-1D436"></use></g><g data-mml-node="msub" transform="translate(760,0)"><g data-mml-node="mi"><use data-c="1D442" xlink:href="#MJX-6-TEX-I-1D442"></use></g><g data-mml-node="mn" transform="translate(796,-150) scale(0.707)"><use data-c="32" xlink:href="#MJX-6-TEX-N-32"></use></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><msub><mi>O</mi><mn>2</mn></msub></math></mjx-assistive-mml></mjx-container><script type="math/tex">CO_2</script><span>同化途径分类</span></p><ol start='' ><li><p><span>C3作物       【水稻、麦类、大豆、棉花等】</span></p><blockquote><p><span>光合作用最先形成的中间产物是带3个碳原子的磷酸甘油酸</span>
+<u><span>光合作用的CO2补偿点高，有较强的光呼吸</span></u></p></blockquote></li><li><p><span>C4作物       【玉米、高粱、甘蔗、四倍体黑麦】</span></p><blockquote><p><span>光合作用最先形成的中间产物是带4个碳原子的草酰乙酸等双羧酸</span>
+<u><span>光合作用的光照强度、CO2补偿点低，光呼吸作用也低，在强光高温下光合作用能力比C3作物高</span></u></p></blockquote></li><li><p><span>CAM作物    【仙人掌、剑麻、菠 萝、向犁科和龙舌兰科等】</span></p></li></ol></li><li><p><span>其他分类方法</span></p><ul><li><span>按播种季节分：春播（夏播）作物和秋播（冬播）作物</span></li><li><span>按收获季节分：夏熟作物和秋熟作物</span></li><li><span>按播种密度和田间管理分：密植作物和中耕作物等</span></li><li><span>按生育期、生育季节分：早熟、中熟、晚熟</span></li><li><span>按茎秆生育特点分：高秆作物（如玉米、甘蔗等） 矮秆作物（稻、麦、油菜、大豆、棉花等） 匍匐作物（如甘薯、苕子等）。</span></li></ul></li></ul><h3 id='3-起源于我国的植物'><span>3. 起源于我国的植物</span></h3><ul><li><span>大豆、粟、花生（小粒种）等【确定起源我国】</span></li><li><span>油菜的白菜型、芥菜型、小麦的野生种类、部分野生稻【某些栽培品种可能起源我国】</span></li><li><span>我国也应是栽培稻的起源中心</span></li></ul><h3 id='4-作物传播的重要性'><span>4. 作物传播的重要性</span></h3><ol start='' ><li><span>为作物的广泛利用提供了更大的空间</span></li><li><span>促进了作物种类的多样化，丰富了作物的利用价值</span></li><li><span>大大促进了世界作物生产和产量水平</span></li><li><span>作物的传播也带动了世界贸易的发展和文化的交流</span></li></ol><h3 id='5-作物传播的途径'><span>5. 作物传播的途径</span></h3><ol start='' ><li><span>自然途径传播</span></li><li><span>人类有计划的开发</span></li><li><span>移民、贸易、文化交流、传教、战争、外交活动</span></li><li><span>其他传播活动：现代商业传播</span></li></ol><blockquote><ul><li><span>传播的速度：古代很慢，现代迅速</span></li><li><span>传播的结果：起源中心和现在的生产中心差异很大</span></li></ul></blockquote><h3 id='6-影响作物分布与生产的因素★'><span>6. 影响作物分布与生产的因素★</span></h3><ol start='' ><li><span>作物种类和品种的生物学特性</span></li><li><span>温度、光照、降水等气候条件</span></li><li><span>纬度、海拔、地势、地貌、土壤等地理环境条件</span></li><li><span>人们的消费习惯、生活需求、消费水平等社会条件</span></li><li><span>农业经济技术的进步</span></li><li><span>国内外市场的销售和价格</span></li></ol><h3 id='7-作物单产总产水平最高国家★'><span>7. 作物单产、总产水平最高国家★</span></h3><ul><li><p><span>中国的世界最高</span></p><ul><li><span>谷物总产最高</span></li><li><span>稻谷总产最高</span></li><li><span>小麦总产最高</span></li><li><span>油菜总产最高</span></li><li><span>花生总产最高</span></li><li><span>（即只有）</span></li></ul></li></ul><figure><table><thead><tr><th><span>谷物</span></th><th>&nbsp;</th><th><span>稻谷</span></th><th>&nbsp;</th><th><span>小麦</span></th><th>&nbsp;</th><th><span>玉米</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td></tr><tr><td><span>中国</span></td><td><span>法国</span></td><td><span>中国</span></td><td><span>澳大利亚</span></td><td><span>中国</span></td><td><span>法国</span></td><td><span>美国</span></td><td><span>美国</span></td></tr></tbody></table></figure><figure><table><thead><tr><th><span>大豆</span></th><th>&nbsp;</th><th><span>油菜</span></th><th>&nbsp;</th><th><span>花生</span></th><th>&nbsp;</th><th><span>向日葵</span></th><th>&nbsp;</th></tr></thead><tbody><tr><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td><td><span>总产</span></td><td><span>单产</span></td></tr><tr><td><span>美国</span></td><td><span>美国</span></td><td><span>中国</span></td><td><span>德国</span></td><td><span>中国</span></td><td><span>美国</span></td><td><span>俄罗斯</span></td><td><span>法国</span></td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='8-我国种植业趋于的划分与优势产业带☆'><span>8. 我国种植业趋于的划分与优势产业带☆</span></h3><ul><li><p><span>划分依据（简称三个相似性，一个完整性）</span></p><ol start='' ><li><span>发展种植业的</span><u><span>自然条件和社会经济条件</span></u><span>的区内</span><u><span>相似性</span></u></li><li><span>作物</span><u><span>结构、布局和种植制度</span></u><span>的区内</span><u><span>相似性</span></u></li><li><u><span>种植业发展方向和关键措施</span></u><span>的区内</span><u><span>相似性</span></u></li><li><span>保持一定</span><u><span>行政区界</span></u><span>的</span><u><span>完整性</span></u><span>的原则</span></li></ol></li><li><p><span>划分结果</span></p><ul><li><span>10个一级区域31个二级区</span></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第三章作物品种选育与良种繁殖'><strong><span>第三章：作物品种选育与良种繁殖</span></strong></h2><h3 id='1-品种改良目标育种目标）'><span>1. 品种改良目标（育种目标）</span></h3><ol start='' ><li><span>高产</span></li><li><span>优质</span></li><li><span>稳定性好</span></li><li><span>适应性强</span></li></ol><h3 id='2-作物品质'><span>2. 作物品质</span></h3><ol start='' ><li><span>化学品质（即营养品质，如蛋白质、淀粉含量）</span></li><li><span>物理品质（如小麦的沉降值、稻米的胶稠度） </span></li><li><span>加工品质（小麦出粉率、水稻出米率） </span></li><li><span>食用品质（即口感品质）</span></li></ol><h3 id='3-制定育种目标的原则'><span>3. 制定育种目标的原则</span></h3><ol start='' ><li><span>国民经济和生产发展的前景</span></li><li><span>当地现有品种有待提高和改进的主要性状</span></li><li><span>具体性状的可行性</span></li><li><span>品种的合理搭配</span></li></ol><h3 id='4-种质资源的概念与分类'><span>4. 种质资源的概念与分类</span></h3><ul><li><p><span>概念：各种植物的栽培种、野生种的繁殖材料以及利用上述繁殖材料人工创造的遗传材料</span></p></li><li><p><span>按来源分类</span></p><ol start='' ><li><span>本地种质资源</span></li><li><span>外地种质资源</span></li><li><span>野生植物资源</span></li><li><span>人工创造的种质资源</span></li></ol></li><li><p><span>按亲缘关系分类</span></p><ol start='' ><li><span>初级基因库</span></li><li><span>次级基因库</span></li><li><span>三级基因库</span></li></ol></li></ul><h3 id='5-作物繁殖方式'><span>5. 作物繁殖方式</span></h3><ol start='' ><li><u><span>有性繁殖</span></u><span>   【自花授粉、异花授粉、常异花授粉】</span>
+<span>凡由雌雄配子结合，经过受精过程，最后形成种子繁衍后代的， 统称有性繁殖</span></li><li><u><span>无性繁殖</span></u>
+<span>凡不经过有两性细胞受精过程的方式繁殖后代的统称为无性繁殖</span></li></ol><h3 id='6-作物的品种类型'><span>6. 作物的品种类型</span></h3><ol start='' ><li><span>自交系品种</span></li><li><span>杂交品种</span></li><li><span>群体品种</span></li><li><span>无性系品种</span></li></ol><h3 id='7-引种的概念与规律'><span>7. 引种的概念与规律</span></h3><ul><li><span>概念：通过搜集、引进种质资源，在人类的选择培育下，使野生植物成为栽培 植物，使外地或外国的作物品种成为本地的作物品种的措施和过程4</span></li></ul><ol start='' ><li><p><span>低温长日性作物的引种规律</span></p><ol start='' ><li><span>原产高纬度地区的品种，引到低纬度地区</span></li><li><span>原产低纬度地区的品种，引至高纬度地区</span></li><li><span>高海拔地区的品种，引到平原地区</span></li></ol></li><li><p><span>高温短日性作物的引种规律</span></p></li><li><p><span>作物对环境反应的敏感度</span></p><ol start='' ><li><span>敏感型作物：如大豆</span></li><li><span>迟钝型作物：如甘薯、花生</span></li><li><span>中间型作物：如水稻、玉米、谷子、棉花、麻类</span></li></ol></li></ol><h3 id='8-引种的原则'><span>8. 引种的原则</span></h3><ol start='' ><li><span>要根据生产发展的需要，确定引种的目的与任务</span></li><li><span>先试验后引种，少引种多自繁</span></li><li><span>引种试验与栽培试验相结合，探索良种良法配套技术</span></li><li><span>进行必要的检疫，防止带入本地区没有的病虫草害</span></li></ol><h3 id='9-选择育种'><span>9. 选择育种</span></h3><ul><li><span>直接利用自然变异，不需要人工创造变异而从中进行选择并通过比较试验的育种方法</span></li></ul><h3 id='10-杂交育种的概念亲本选配原则'><span>10. 杂交育种的概念，亲本选配原则</span></h3><ul><li><p><span>概念：通过不同亲本间的杂交，在后代中创造变异并从中选育新品种的方法</span></p></li><li><p><span>亲本选配原则</span></p><ol start='' ><li><span>亲本的优点多缺点少，且优缺点互补</span></li><li><span>亲本之一最好为当地优良品种</span></li><li><span>亲本的遗传差异较大（生态类型、地理起源和亲缘关系）</span></li><li><span>亲本应具有较好的配合力</span></li></ol></li></ul><h3 id='11-杂种优势的概念表现特点利用杂种优势的要求'><span>11. 杂种优势的概念、表现特点、利用杂种优势的要求</span></h3><ul><li><p><span>概念：指两个性状不同的亲本杂交产生的杂种F1，表现出的某些性状或综合 性状超过其亲本品种的现象</span></p></li><li><p><span>表现特点</span></p><ol start='' ><li><span>复杂多样性 </span></li><li><span>杂种优势强弱和亲本性状差异及纯度密切相关</span></li><li><span>F2及以后世代杂种优势的衰退</span></li></ol></li><li><p><span>杂种优势利用的基本要求</span></p><ol start='' ><li><span>双亲一般配合力高</span></li><li><span>双亲遗传差异大</span></li><li><span>双亲优点多缺点少且优缺点互补</span></li><li><span>制种性状好</span></li></ol></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第四章作物生长发育与产量品质形成'><strong><span>第四章：作物生长发育与产量品质形成</span></strong></h2><h3 id='1-生长发育的概念'><span>1. 生长、发育的概念</span></h3><ul><li><span>生长：作物在数量上的不可逆增长叫生长</span></li><li><span>发育：在生长的基础上，作物体内发生的一系列质的变化</span></li></ul><h3 id='2-生长和发育的关系'><span>2. 生长和发育的关系</span></h3><ul><li><p><span>没有生长便没有发育，没有发育也不会有进一步的生长，生长与发育是交 替推进的</span></p><ol start='' ><li><span>生长是发育的基础</span></li><li><span>发育又促进了新器官的生长</span></li><li><span>生长快发育慢</span></li><li><span>生长慢，发育快</span></li></ol></li></ul><h3 id='3-s形生长曲线的应用'><span>3. S形生长曲线的应用</span></h3><ol start='' ><li><span>S曲线可作为检验作物生育进程是否正常的依据之一</span></li><li><span>各种措施（促进或抑制）都应在最快速度到来之前应用</span></li><li><span>不同器官S生长曲线不同，促控时注意相互影响</span></li></ol><h3 id='4-生育期物候期和生育时期'><span>4. 生育期、物候期和生育时期</span></h3><ul><li><u><span>生育期</span></u>
+<span>作物出苗到成熟期间的总天数，即作物的一生</span></li><li><u><span>物候期</span></u>
+<span>作物生长发育在一定外界环境条件下所表现的形态特征， 人为地制定一个具体标准，以便科学地把握作物的生育进程</span></li><li><u><span>生育时期</span></u>
+<span>指某一形态特征出现变化后持续的一段时间，并以该时期 始期至下一时期始期的天数计算</span></li></ul><h3 id='5-生长中心养分分配c-n代谢与栽培目标'><span>5. 生长中心、养分分配、C-N代谢与栽培目标</span></h3><ul><li><p><span>【</span><u><span>生长中心与养分分配中心</span></u><span>】【</span><u><span>C/N代谢特点</span></u><span>】【</span><u><span>栽培目标</span></u><span>】</span></p></li><li><p><span>前期</span></p><ul><li><span>根、叶、枝 （蘖）</span></li><li><span>N代谢占优势          </span></li><li><span>壮苗早发， 建立足够营养体，长好苗架   </span></li></ul></li><li><p><span>中期</span></p><ul><li><span>主要中心：花（幼穗）、次要中心：叶、枝、根</span></li><li><span>C、N代谢并重</span></li><li><span>壮株稳长，形成足够量的 储存产品的器官积累大量 有机物，壮茎足花（大穗）</span></li></ul></li><li><p><span>后期</span></p><ul><li><span>籽实、块根、块茎</span></li><li><span>C代谢占优势</span></li><li><span>养根保叶，保证 足够有机物向产 品器官运转，增粒增重</span></li></ul></li></ul><h3 id='6-休眠和后熟'><span>6. 休眠和后熟</span></h3><ul><li><p><strong><span>休眠</span></strong><span>：在适宜的条件下，作物种子和供繁殖的营养器官暂时停止萌发的现象</span></p><ul><li><u><span>深休眠</span></u><span>：种子未完全通过生理成熟或收获后进入休眠，给予适当的条件仍不能发芽，又称生理(自然)休眠</span></li><li><u><span>强迫休眠</span></u><span>：种子已具有发芽的能力，但由于不利环境条件的诱导而引起自我调节的休眠</span></li></ul></li><li><p><strong><span>后熟</span></strong><span>：种子从休眠状态向萌发状态逐渐转变的过程</span></p></li></ul><h3 id='7-有性种子萌发过程'><span>7. 有性种子萌发过程</span></h3><ul><li><span>种子萌发三阶段分：</span><strong><span>吸胀</span></strong><span>、</span><strong><span>萌动</span></strong><span>、</span><strong><span>发芽</span></strong></li><li><span>发芽标准：</span><u><span>禾谷类作物，根长一粒谷，芽长半粒谷</span></u></li><li><span>萌发形式：根据下胚轴的是否伸长分成</span><strong><span>子叶出土</span></strong><span>和</span><strong><span>子叶不出土</span></strong><span>两类</span></li></ul><h3 id='8-种子萌发需要的外界条件'><span>8. 种子萌发需要的外界条件</span></h3><ul><li><p><span>足够的水分、充足的氧气和适当的温度，有些种子的萌发还受着光的影响</span></p><ol start='' ><li><p><span>水分</span></p></li><li><p><span>氧气</span></p></li><li><p><span>温度</span></p></li><li><p><span>光照</span></p><ul><li><span>需光性种子或喜光性种子，例如烟草、莴苣、杂草种子</span></li><li><span>需暗性或嫌光性种子，如番茄、茄子、瓜类、苋菜种子</span></li></ul></li></ol></li></ul><h3 id='9-根系的类型'><span>9. 根系的类型</span></h3><ul><li><span>单子叶作物：</span><u><span>须根系</span></u><span>，由 </span><u><span>初生根系</span></u><span> 和 </span><u><span>次生根系</span></u><span> 组成</span></li><li><span>双子叶植物：直根系，由一条发达的 </span><u><span>主根</span></u><span> 和 </span><u><span>各级侧根</span></u><span> 构成</span></li></ul><h3 id='10-根系的功能'><span>10. 根系的功能</span></h3><ol start='' ><li><span>支柱作用</span></li><li><span>吸收水分和养分</span></li><li><span>合成物质</span></li><li><span>土壤有机质</span></li><li><span>贮存养分</span></li><li><span>可作为繁殖器官</span></li></ol><h3 id='11-影响根系生长的主要因素'><span>11. 影响根系生长的主要因素</span></h3><ol start='' ><li><p><u><span>土壤湿度与氧气</span></u></p><blockquote><p><span>水分是影响根系生长的主要因素，过于干燥和潮 湿的土壤都不利于根系的生长及其功能的发挥。</span></p></blockquote></li><li><p><u><span>土壤肥力和酸碱度（pH）</span></u></p><blockquote><p><span>土壤肥沃时，根冠比比土壤贫瘠时要小。 当pH值超过5～8时，通常将阻绕或限制根系的生长。pH值低于5时， 会造成根系毒害</span></p></blockquote></li><li><p><u><span>土壤温度</span></u></p><blockquote><p><span>适宜20～30℃</span></p></blockquote></li></ol><h3 id='12-茎枝的功能'><span>12. 茎枝的功能</span></h3><ol start='' ><li><span>支持功能  【叶、穗或果实生长，决定叶面积分布与结实部位合理配置】</span></li><li><span>输导系统</span></li><li><span>合成功能  【绿色幼嫩茎、枝具有合成有机养料的作用】</span></li><li><span>临时贮存养料的器官</span></li><li><span>通气作用  【如水稻】</span></li><li><span>茎可作为繁殖器官  【如甘蔗、马铃薯等】</span></li></ol><h3 id='13-叶层分组及功能'><span>13. 叶层分组及功能</span></h3><ul><li><p><span>根据叶片出生时间的先后和着生部位大致可分为下、中、上三层（组）</span></p><ul><li><strong><span>下层叶片</span></strong><span>：生育前期出生的下部叶片，其光合产物主要</span><u><span>供给根系、分蘖、 幼叶</span></u></li><li><strong><span>中层叶片</span></strong><span>：生育中期出生的中部的叶片，其光合产物主要</span><u><span>供给茎秆、穗 （或花蕾）生长</span></u></li><li><strong><span>上层叶片</span></strong><span>：生育后期出生的位于上部的叶片，其光合产物主要</span><u><span>供应结实器官</span></u></li></ul></li></ul><h3 id='14-地下部和地上部的相互关系'><span>14. 地下部和地上部的相互关系</span></h3><ol start='' ><li><span>根系与地上部器官之间的生长关系</span></li><li><span>根系重量与地上 部重量的相互关系</span></li><li><span>环境条件和栽培技术的影响</span></li></ol><h3 id='15-营养生长与生殖生长的关系'><span>15. 营养生长与生殖生长的关系</span></h3><ol start='' ><li><span>形态发生的相互关系</span></li><li><span>养分运转的关系</span></li><li><span>栽培上的应用</span></li></ol><h3 id='16-营养器官间的相互关系'><span>16. 营养器官间的相互关系</span></h3><ul><li><span>叶与芽（蘖）（?）</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第五章作物与生态环境'><strong><span>第五章：作物与生态环境</span></strong></h2><h3 id='1-生态因子的概念分类和作用机制限制方式'><span>1. 生态因子的概念、分类和作用机制、限制方式</span></h3><ul><li><span>概念：与作物有关的所有环境因子</span></li><li><span>分类：气候、土壤、地形、生物、人为；主次、交互、直接和间接作用、阶段性</span></li><li><span>限制方式：最小因子、报酬递减、耐性定律</span></li><li><span>作物的生态适应性（生态型、生活型） </span></li><li><span>光照对作物生长的影响（光强、日长、光周期）</span></li></ul><h3 id='2-光周期理论的应用'><span>2. 光周期理论的应用</span></h3><ol start='' ><li><span>引种：同纬度地区，只要肥水条件相似，引种容易成功。不同纬度的 地区引种时，一定要进行试验，忌盲目引进</span></li><li><span>育种：促进花期相遇。 南繁北育，加代繁殖</span></li><li><span>控制花期（花卉）</span></li><li><span>调节营养和生殖生长营养器官为收获物：适当推迟开花能够提高产量和品质。南麻北种</span></li></ol><h3 id='3-温度对作物生长的影响'><span>3. 温度对作物生长的影响</span></h3><ol start='' ><li><span>生长，温度高生长快</span></li><li><span>发育，诱导成花（低温），高温促进发育（感温性）</span></li></ol><h3 id='4-作物三基点温度的特征'><span>4. 作物三基点温度的特征</span></h3><ul><li><span>不同作物、不同生育时期、不同器官、最适温度接近最高温度</span></li></ul><h3 id='5-积温活动积温有效积温'><span>5. 积温、活动积温、有效积温</span></h3><ul><li><span>积温：≥零度</span></li><li><span>活动积温：生物学零度</span></li><li><span>有效积温：高于生物学零度与生物学零度的差值累加值</span></li></ul><h3 id='6-积温在农业生产上的应用'><span>6. 积温在农业生产上的应用</span></h3><ul><li><span>确定播期、预测产量、制定种植制度</span></li></ul><h3 id='7-温度逆境对作物的危害及防御措施低温高温逆温）'><span>7. 温度逆境对作物的危害及防御措施（低温、高温、逆温）</span></h3><h3 id='8-作物对水分的需求特点'><span>8. 作物对水分的需求特点？ </span></h3><ul><li><span>生理需水、生态需水；需水临界期</span></li></ul><h3 id='9-水分逆境对作物的影响'><span>9. 水分逆境对作物的影响</span></h3><p><span>干旱（土壤、大气）、水涝（渍害、涝害） </span></p><h3 id='10-co2的时空变化规律及与作物产量的关系'><span>10. CO2的时空变化规律及与作物产量的关系 </span></h3><p><span>CO2补偿点、CO2饱和点；C4作物和C3作物的区别 </span></p><h3 id='11-温室气体的主要成分和对作物影响'><span>11. 温室气体的主要成分和对作物影响</span></h3><p><span>CO2、CH4、N2O；气候差异变大，CO2浓度增加；病虫草害</span></p><h3 id='12-作物必需的营养元素'><span>12. 作物必需的营养元素</span></h3><ul><li><span>N、P、K、S、Ca、Mg、Fe、Mn、B、Zn、Cu、Mo、Cl</span></li></ul><h3 id='13-主要矿质元素的作用及营养诊断'><span>13. 主要矿质元素的作用及营养诊断</span></h3><h3 id='14-作物的需肥量和需肥特性'><span>14. 作物的需肥量和需肥特性</span></h3><ol start='' ><li><span>不同作物</span></li><li><span>不同品种</span></li><li><span>不同生育阶段</span></li></ol><h3 id='15-营养临界期最大效率期'><span>15. 营养临界期、最大效率期</span></h3><h3 id='16-土壤性质和结构'><span>16. 土壤性质和结构</span></h3><ul><li><span>物理性质：质地、孔隙性、结构性、热性质、可耕性</span></li><li><span>化学性质：吸收性、酸碱性、缓冲性、养分</span></li><li><span>团粒结构、块状结构、片层结构</span></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='第六章作物生产技术'><strong><span>第六章：作物生产技术</span></strong></h2><h3 id='1-土壤耕作的概念作用和意义'><span>1. 土壤耕作的概念、作用和意义</span></h3><ol start='' ><li><span>耕层三相比</span></li><li><span>微生物活性</span></li><li><span>提高肥料利用率</span></li><li><span>适宜的播床</span></li><li><span>蓄水保墒</span></li><li><span>控制病虫草害</span></li></ol><h3 id='2-土壤耕作的类型'><span>2. 土壤耕作的类型</span></h3><ul><li><span>土壤基本耕作：翻耕、深松、旋耕</span></li><li><span>表土耕作：耙地、耱地、镇压、作畦、起垄、中耕、培土</span></li><li><span>少耕和免耕</span></li></ul><h3 id='3-土壤培肥的途径'><span>3. 土壤培肥的途径</span></h3><ul><li><span>合理轮作、合理施肥、秸秆还田、种植绿肥等</span></li></ul><h3 id='4-播种期确定的依据'><span>4. 播种期确定的依据</span></h3><ol start='' ><li><span>品种特性</span></li><li><span>种植制度</span></li><li><span>气候条件</span></li><li><span>病虫害</span></li><li><span>种植方式</span></li></ol><h3 id='5-播种期和播种量的确定'><span>5. 播种期和播种量的确定</span></h3><ul><li><span>播期：品种特性、种植制度、气候条件、病虫害、种植方式、市场因素</span></li><li><span>播量：作物、品种类型、环境及生产条件、栽培技术水平、目标产量和经济效益</span></li></ul><h3 id='6-育苗移栽的作用和类型'><span>6. 育苗移栽的作用和类型</span></h3><ul><li><p><span>作用</span></p><ol start='' ><li><span>缓和季节矛盾，充分利用自然资源</span></li><li><span>延长作物生育期，增加复种指数</span></li><li><span>便于集中管理，培育壮苗</span></li><li><span>减少种子、水、肥料、农药等用量节约成本</span></li><li><span>保证大田适宜的密度</span></li></ol></li><li><p><span>类型</span></p><ol start='' ><li><span>露地育苗</span></li><li><span>保温育苗</span></li><li><span>增温育苗</span></li></ol></li></ul><h3 id='7-地膜覆盖的效应'><span>7. 地膜覆盖的效应</span></h3><ol start='' ><li><span>提高土壤温度，促进作物早熟 </span></li><li><span>防止水土流失，改善土壤物理性状</span></li><li><span>促进微生物活动，加速土壤养分的分解转化</span></li><li><span>防止土壤返盐，提高出 苗率</span></li><li><span>改善近地光照条件，提高光能利用率</span></li><li><span>病虫害发生规律变化， 病虫害的防治应相应变化</span></li></ol><h3 id='8-肥料利用率的变化规律'><span>8. 肥料利用率的变化规律</span></h3><ol start='' ><li><span>土壤肥力越高，肥料利用率越低</span></li><li><span>施肥量越大，肥料利用率越低</span></li><li><span>灌溉条件 越差，肥料利用率越低</span></li><li><span>追肥高于基肥</span></li><li><span>深施高于表施</span></li><li><span>有机无机配合高于单施</span></li><li><span>腐熟高于半腐熟</span></li><li><span>粘土高于沙土</span></li></ol><h3 id='9-需水临界期'><span>9. 需水临界期</span></h3><ul><li><p><span>大多在营养生长向生殖生长过渡阶段</span></p></li><li><p><span>此期缺水，作物的幼穗分化、开花授粉、受精和胚胎发育过程 都会发生障碍，最终导致减产</span></p></li><li><p><span>主要作物的需水临界期</span></p><ul><li><span>水稻                            ——  孕穗期－开花期</span></li><li><span>冬小麦与黑麦             ——  孕穗－抽穗</span></li><li><span>春小麦、燕麦、大麦  ——  孕穗－抽穗</span></li><li><span>玉米                             ——  开花－乳熟 </span></li><li><span>豆类、花生                 ——  开花期－结实 </span></li><li><span>向日葵                         ——  葵盘的形成－灌浆 </span></li><li><span>棉花                             ——  开花结铃期 </span></li><li><span>马铃薯                         ——  开花－块茎形成</span></li></ul></li></ul><h3 id='10-植物生长调节剂'><span>10. 植物生长调节剂</span></h3><ul><li><p><span>生长促进剂</span></p><ol start='' ><li><span>人工合成的IAA类似物</span></li><li><span>赤霉素（GA）</span></li><li><span>细胞分裂素（CTK）</span></li><li><span>乙烯利（CEPA）</span></li></ol></li><li><p><span>植物生长抑制剂</span></p><ol start='' ><li><span>青鲜素（MH）</span></li><li><span>三碘苯甲酸（2，3，5-T，TIBA）</span></li><li><span>整形素（形态素）</span></li><li><span>脱落酸（ABA）</span></li></ol></li><li><p><span>植物生长延缓剂</span></p><ol start='' ><li><span>矮壮素（CCC）</span></li><li><span>皮克斯（pix）</span></li><li><span>比久（B9）</span></li><li><span>多效唑 国外称PP333</span></li></ol></li></ul><h3 id='11-病害防治'><span>11. 病害防治</span></h3><ul><li><p><span>症状</span></p><ul><li><span>变色：黄化、红叶、花叶</span></li><li><span>斑点：褐斑、条斑、灰斑、白斑</span></li><li><span>腐烂：湿腐、干腐、立枯、猝倒</span></li><li><span>萎焉：黄萎、枯萎、青枯</span></li><li><span>畸形：肿瘤、卷叶、丛株 </span></li></ul></li><li><p><span>对作物的影响</span></p><ul><li><span>根系：烂根、烂秧、根尖线虫</span></li><li><span>茎：黄萎病、枯萎病、青枯病（花生）</span></li><li><span>叶：褪色、变红、黄化、花叶、病斑</span></li></ul></li></ul><p>&nbsp;</p></div></div>
+</body>
+</html>
