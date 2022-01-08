@@ -24,9 +24,12 @@
 
 
 
-## 土壤肥料学通论（未完工）
+## 土壤肥料学通论（肥料学需结合其他资料）
 
 - [Light](Soil&Fertilizer_Science.html)    [Dark](Soil&Fertilizer_Science_Dark.html)
 
 
 
+## 作物学通论
+
+- [Light](Crop_Science.html)    [Dark](Crop_Science_Dark.html)
